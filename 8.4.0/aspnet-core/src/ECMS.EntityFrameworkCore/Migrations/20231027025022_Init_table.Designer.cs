@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECMS.Migrations
 {
     [DbContext(typeof(ECMSDbContext))]
-    [Migration("20231024080744_init_table")]
-    partial class init_table
+    [Migration("20231027025022_Init_table")]
+    partial class Init_table
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1588,6 +1588,9 @@ namespace ECMS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
 
@@ -1648,6 +1651,9 @@ namespace ECMS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<string>("CourseCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("CourseFee")
                         .HasColumnType("bigint");
 
@@ -1675,7 +1681,7 @@ namespace ECMS.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("Quantity")
+                    b.Property<long?>("Quantity")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

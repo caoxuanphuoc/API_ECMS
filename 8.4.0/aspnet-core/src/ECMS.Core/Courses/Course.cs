@@ -12,9 +12,10 @@ namespace ECMS.Courses
     [Table("AbpCourse")]
     public class Course : FullAuditedEntity<long>
     {
+        public string CourseCode { get; set; }
         public string CourseName { get; set; }
         public long CourseFee { get; set; }
-        public long Quantity { get; set; }
+        public long? Quantity { get; set; }
         //public ICollection<Class> Classes { get; set; }
     }
 }
