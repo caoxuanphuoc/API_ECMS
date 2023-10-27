@@ -14,5 +14,9 @@
         public const string Pages_Classes = "Pages.Classes";
         public const string Pages_UserClasses = "Pages.UserClasses";
         public const string Pages_UserClasses_Register = "Pages.UserClasses.Register";
+
+        public const string Pages_Teachers = "Pages.Teachers";
+
+
     }
 }

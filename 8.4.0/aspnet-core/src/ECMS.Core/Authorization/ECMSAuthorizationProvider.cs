@@ -18,7 +18,8 @@ namespace ECMS.Authorization
             context.CreatePermission(PermissionNames.Pages_Classes, L("ClassesPer"));
             context.CreatePermission(PermissionNames.Pages_UserClasses, L("UserClassPer"));
             context.CreatePermission(PermissionNames.Pages_UserClasses_Register, L("UserRegisterClassPer"));
-            
+
+            context.CreatePermission(PermissionNames.Pages_Teachers, L("TeacherPer"));
         }
 
         private static ILocalizableString L(string name)
