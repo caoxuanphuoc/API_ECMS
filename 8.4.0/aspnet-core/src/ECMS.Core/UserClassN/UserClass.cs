@@ -30,6 +30,7 @@ namespace ECMS.UserClassN
     public enum TypeRole
     {
         Teacher,
+        TrialLearning,
         Student
     }
 }
