@@ -6,12 +6,13 @@ using ECMS.MultiTenancy;
 using ECMS.UserClassN;
 using ECMS.Payment;
 using ECMS.Classes;
-using ECMS.Schedules;
+using ECMS.ScheduleManage.Schedules;
 using ECMS.Courses;
-using ECMS.Rooms;
+using ECMS.Classes.Rooms;
 using ECMS.Social.Posts;
 using ECMS.HomeWorks;
 using ECMS.Social.Comments;
+using ECMS.ScheduleManage;
 
 namespace ECMS.EntityFrameworkCore
 {
@@ -31,6 +32,9 @@ namespace ECMS.EntityFrameworkCore
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SubmitHomework> SubmitHomeWorks { get; set; }
+        public DbSet<ScheduleClass> ScheduleClasses { get; set; }
+
+        
         public ECMSDbContext(DbContextOptions<ECMSDbContext> options)
             : base(options)
         {

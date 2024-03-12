@@ -8,8 +8,6 @@ using AutoMapper.Internal.Mappers;
 using ECMS.Authorization;
 using ECMS.Classes.Dto;
 using ECMS.Courses;
-using ECMS.Rooms;
-using ECMS.Schedules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +17,8 @@ using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
 using ECMS.UserClasses.Dto;
 using ECMS.UserClassN;
+using ECMS.ScheduleManage.Schedules;
+using ECMS.Classes.Rooms;
 
 namespace ECMS.Classes
 {
@@ -195,11 +195,11 @@ namespace ECMS.Classes
         public override async Task DeleteAsync(EntityDto<long> input)
         {
             CheckDeletePermission();
-            var scheduleCount = await _scheduleRepository.CountAsync(x => x.ClassId == input.Id);
+           /* var scheduleCount = await _scheduleRepository.CountAsync(x => x.ClassId == input.Id);
             if (scheduleCount > 0)
             {
                 throw new UserFriendlyException($"Class is being used with id = {input.Id}");
-            }
+            }*/
             await base.DeleteAsync(input);
         }
     }

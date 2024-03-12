@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECMS.Schedules
+namespace ECMS.ScheduleManage.Schedules
 {
     public enum Shift
     {
