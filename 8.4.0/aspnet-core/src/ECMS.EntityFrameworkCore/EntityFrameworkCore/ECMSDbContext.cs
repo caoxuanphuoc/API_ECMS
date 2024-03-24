@@ -32,9 +32,6 @@ namespace ECMS.EntityFrameworkCore
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SubmitHomework> SubmitHomeWorks { get; set; }
-        public DbSet<ScheduleClass> ScheduleClasses { get; set; }
-
-        
         public ECMSDbContext(DbContextOptions<ECMSDbContext> options)
             : base(options)
         {
