@@ -19,13 +19,15 @@ using ECMS.UserClasses.Dto;
 using ECMS.UserClassN;
 using ECMS.ScheduleManage.Schedules;
 using ECMS.Classes.Rooms;
+using ECMS.Schedules.Dto;
+using Newtonsoft.Json;
+using System.Reflection;
 
 namespace ECMS.Classes
 {
     [AbpAuthorize(PermissionNames.Pages_Classes)]
     public class ClassAppService : AsyncCrudAppService<Class, ClassDto, long, PagedClassResultRequestDto, CreateClassDto, UpdateClassDto>, IClassAppService
     {
-        private readonly IRepository<Class, long> _repository;
         private readonly IRepository<Schedule, long> _scheduleRepository;
         private readonly IRepository<Course, long> _courseRepository;
         private readonly IRepository<Room, int> _roomRepository;
@@ -36,7 +38,6 @@ namespace ECMS.Classes
             IRepository<Room, int> roomRepository
         ) : base(repository)
         {
-            _repository = repository;
             _scheduleRepository = scheduleRepository;
             _courseRepository = courseRepository;
             _roomRepository = roomRepository;
@@ -45,7 +46,6 @@ namespace ECMS.Classes
         protected override IQueryable<Class> CreateFilteredQuery(PagedClassResultRequestDto input)
         {
             var query = Repository.GetAllIncluding(x => x.Course);
-            query = query.Where(x => x.IsActive);
 
             if (!input.Keyword.IsNullOrWhiteSpace())
             {
@@ -53,6 +53,11 @@ namespace ECMS.Classes
                                         x.Code.ToLower().Contains(input.Keyword.ToLower())
                                         && x.IsActive);
             }
+            else
+            {
+                query = query.Where(x => x.IsActive);
+            }
+            query = query.OrderByDescending(x => x.CreationTime);
             return query;
         }
         // Sorting by User
@@ -75,7 +80,7 @@ namespace ECMS.Classes
         protected async Task<Room> CheckRoomIsExists(int roomId)
         {
             var room = await _roomRepository.GetAsync(roomId);
-            if (room == null || (room != null & room.IsDeleted))
+            if (room == null || (room != null && room.IsDeleted))
             {
                 throw new EntityNotFoundException("Not found Room");
             }
@@ -108,76 +113,57 @@ namespace ECMS.Classes
         /// <param name="roomId"></param>
         /// <param name="LsWorkShift"></param>
         /// <returns></returns>
-        
-        protected string CreateNextCodeClass(string CurCode)
+        protected async Task<PagedResultDto<ScheduleDto>> CreateAutomatic(CreateAutomaticDto input)
         {
-
-            string CourseName = CurCode.Substring(0, 5);
-            string CurNum = CurCode.Substring(6, 3);
-            string CurChar = CurCode.Substring(5, 1);
-
-            int num = int.Parse(CurNum);
-
-            string Numcode = "";
-            string Charcode = CurChar;
-            if (num >= 99 && num <= 999)
+            DateTime Temp = input.StartTime;
+            List<ScheduleDto> result = new();
+            while (Temp <= input.EndTime)
             {
-                if (num == 999)
+                DayOfWeek checkDOW = Temp.DayOfWeek;
+                foreach( var item in input.ListWorkShifts)
                 {
-                    num = 0;
-                    var s = CurChar[0];
-                    var k = (int)s;
-                    Numcode = "000";
-                    if (k < 90)
+                    if ((int) item.DateOfWeek == (int) checkDOW)
                     {
-                        s++;
-                        Charcode = s.ToString();
+                        Schedule schedule = new()
+                        {
+                            Date = Temp,
+                            ClassId = input.ClassId,
+                            RoomId = input.RoomId,
+                            DayOfWeek = item.DateOfWeek,
+                            Shift = item.ShiftTime
+                        };
+                        await _scheduleRepository.InsertAsync(schedule);
+                        var scheduleDto = ObjectMapper.Map<ScheduleDto>(schedule);
+                        result.Add(scheduleDto);
                     }
-                    if (k == 90)
-                        throw new UserFriendlyException("Đã đạt đến giới hạn mở lớp");
                 }
-                else
-                {
-                    num++;
-                    Numcode = num.ToString();
-                }
-                //thow if k>90
+                UnitOfWorkManager.Current.SaveChanges();
+                Temp = Temp.AddDays(1);
+
             }
-            else if (num >= 9 && num < 99)
-            {
-                num++;
-                Numcode = "0" + num.ToString();
-            }
-            else if (num < 9)
-            {
-                num++;
-                Numcode = "00" + num.ToString();
-            }
-            string newCode = CourseName + Charcode + Numcode;
-            return newCode;
+            return new PagedResultDto<ScheduleDto>(result.Count, result); ;
         }
+
+        //Create new Class
         public override async Task<ClassDto> CreateAsync(CreateClassDto input)
         {
             CheckCreatePermission();
-            var courseIfo = await CheckCourseIsExists(input.CourseId);
-            var latestClass = await _repository.GetAll().Where(x => x.CourseId == input.CourseId).ToListAsync();
-            var maxCodeclass = "";
-            if (latestClass.Count == 0)
+            await CheckCourseIsExists(input.CourseId);
+            await CheckRoomIsExists(input.RoomId);
+            var classRoom = ObjectMapper.Map<Class>(input);
+            classRoom.ClassName = "phuoc";
+            var createClassId = await Repository.InsertAndGetIdAsync(classRoom);
+            var createAutomaticDto = new CreateAutomaticDto
             {
-                maxCodeclass = courseIfo.CourseCode + "A000";
-            }
-            else
-            {
-                maxCodeclass = latestClass.OrderByDescending(x => x.Id).FirstOrDefault().Code;
-                maxCodeclass = CreateNextCodeClass(maxCodeclass);
-            }
-            var Class = ObjectMapper.Map<Class>(input);
-            Class.Code = maxCodeclass;
-            Class.IsActive = true;
-            var createClassId = await Repository.InsertAndGetIdAsync(Class);
+                StartTime = input.StartDate,
+                EndTime = input.EndDate,
+                ClassId = createClassId,
+                RoomId = input.RoomId,
+                ListWorkShifts = input.lsWorkSheet,
+            };
+
+            await CreateAutomatic(createAutomaticDto);
             var getCreateClassId = new EntityDto<long> { Id = createClassId };
-            courseIfo.Quantity++;
-            await _courseRepository.UpdateAsync(courseIfo);
             return await GetAsync(getCreateClassId);
         }
 
@@ -185,6 +171,7 @@ namespace ECMS.Classes
         public override async Task<ClassDto> UpdateAsync(UpdateClassDto input)
         {
             CheckUpdatePermission();
+            await CheckCourseIsExists(input.CourseId);
             var classRoom = await Repository.GetAsync(input.Id);
             ObjectMapper.Map(input, classRoom);
             await base.UpdateAsync(input);
@@ -195,11 +182,14 @@ namespace ECMS.Classes
         public override async Task DeleteAsync(EntityDto<long> input)
         {
             CheckDeletePermission();
-           /* var scheduleCount = await _scheduleRepository.CountAsync(x => x.ClassId == input.Id);
-            if (scheduleCount > 0)
+            var scheduleList = await _scheduleRepository.GetAll().Where(x => x.ClassId == input.Id).ToListAsync(); //CountAsync(x => x.ClassId == input.Id);
+            /*if (scheduleCount > 0)
             {
                 throw new UserFriendlyException($"Class is being used with id = {input.Id}");
             }*/
+            foreach ( var schedule in scheduleList ) { 
+                await _scheduleRepository.DeleteAsync(schedule);
+            }
             await base.DeleteAsync(input);
         }
     }
