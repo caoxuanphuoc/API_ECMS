@@ -17,5 +17,6 @@ namespace ECMS.Classes.Dto
         public long CurrentStudent { get; set; }
         public int LessionTimes { get; set; }
         public bool IsActive { get; set; }
+        public int NumberSchedule { get; set; }
     }
 }

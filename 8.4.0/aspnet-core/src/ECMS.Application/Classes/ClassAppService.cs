@@ -22,6 +22,7 @@ using ECMS.Classes.Rooms;
 using ECMS.Schedules.Dto;
 using Newtonsoft.Json;
 using System.Reflection;
+using Abp.Linq.Extensions;
 
 namespace ECMS.Classes
 {
@@ -60,6 +61,24 @@ namespace ECMS.Classes
             query = query.OrderByDescending(x => x.CreationTime);
             return query;
         }
+        public override async Task<PagedResultDto<ClassDto>> GetAllAsync(PagedClassResultRequestDto input)
+        {
+            var query = Repository.GetAllIncluding(x => x.Course);
+            if(!input.Keyword.IsNullOrWhiteSpace())
+                query = query.Where( x=> x.ClassName.Contains(input.Keyword) || x.Code.Contains(input.Keyword));
+            query = query.OrderByDescending(x => x.CreationTime);
+            var entities = await query
+              .PageBy(input)
+              .ToListAsync();
+            var totalCount = await query.CountAsync();
+            var dtos = ObjectMapper.Map<List<ClassDto>>(entities);
+            foreach( var entity in dtos )
+            {
+                var cnt = await _scheduleRepository.CountAsync(x=> x.ClassId == entity.Id);
+                entity.NumberSchedule = cnt;
+            }
+            return new PagedResultDto<ClassDto>(totalCount, dtos);
+        } 
         // Sorting by User
         protected override IQueryable<Class> ApplySorting(IQueryable<Class> query, PagedClassResultRequestDto input)
         {
@@ -151,7 +170,6 @@ namespace ECMS.Classes
             await CheckCourseIsExists(input.CourseId);
             await CheckRoomIsExists(input.RoomId);
             var classRoom = ObjectMapper.Map<Class>(input);
-            classRoom.ClassName = "phuoc";
             var createClassId = await Repository.InsertAndGetIdAsync(classRoom);
             var createAutomaticDto = new CreateAutomaticDto
             {

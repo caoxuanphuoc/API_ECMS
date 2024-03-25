@@ -9,6 +9,9 @@ namespace ECMS.Classes.Dto
     public class CreateClassDto
     {
         [Required]
+        public string ClassName { get; set; }
+
+        [Required]
         public string Code { get; set; }
         [Required]
         public long CourseId { get; set; }

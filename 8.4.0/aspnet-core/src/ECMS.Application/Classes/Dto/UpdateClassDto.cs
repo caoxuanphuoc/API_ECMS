@@ -9,6 +9,8 @@ namespace ECMS.Classes.Dto
     public class UpdateClassDto : EntityDto<long>
     {
         [Required]
+        public string ClassName { get; set; }
+        [Required]
         public string Code { get; set; }
         [Required]
         public long CourseId { get; set; }
