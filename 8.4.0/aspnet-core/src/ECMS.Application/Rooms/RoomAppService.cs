@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace ECMS.Rooms
 {
     [AbpAuthorize(PermissionNames.Pages_Users)]
+    //hello
     public class RoomAppService : AsyncCrudAppService<Room, RoomDto, int, PagedRoomResultRequestDto, CreateRoomDto, UpdateRoomDto>, IRoomAppService
     {
         private readonly IRepository<Schedule, long> _scheduleRepository;
