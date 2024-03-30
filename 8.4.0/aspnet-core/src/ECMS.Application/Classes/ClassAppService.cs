@@ -209,6 +209,9 @@ namespace ECMS.Classes
         {
             CheckUpdatePermission();
             await CheckCourseIsExists(input.CourseId);
+            await CheckRoomIsExists(input.RoomId);
+            await CodeClassIsExists(input.Code);
+            await CheckCourseIsExists(input.CourseId);
             var classRoom = await Repository.GetAsync(input.Id);
             ObjectMapper.Map(input, classRoom);
             await base.UpdateAsync(input);

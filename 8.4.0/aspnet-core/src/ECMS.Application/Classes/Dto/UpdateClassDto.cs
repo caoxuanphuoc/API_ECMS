@@ -26,5 +26,7 @@ namespace ECMS.Classes.Dto
         public int LessionTimes { get; set; }
         [Required]
         public bool IsActive { get; set; }
+        [Required]
+        public int RoomId { get; set; }
     }
 }
