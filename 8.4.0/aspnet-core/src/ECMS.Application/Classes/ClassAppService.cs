@@ -29,6 +29,7 @@ namespace ECMS.Classes
     [AbpAuthorize(PermissionNames.Pages_Classes)]
     public class ClassAppService : AsyncCrudAppService<Class, ClassDto, long, PagedClassResultRequestDto, CreateClassDto, UpdateClassDto>, IClassAppService
     {
+        private readonly IRepository<Class, long> _repository;
         private readonly IRepository<Schedule, long> _scheduleRepository;
         private readonly IRepository<Course, long> _courseRepository;
         private readonly IRepository<Room, int> _roomRepository;
@@ -42,6 +43,7 @@ namespace ECMS.Classes
             _scheduleRepository = scheduleRepository;
             _courseRepository = courseRepository;
             _roomRepository = roomRepository;
+            _repository = repository;
         }
         // Create Query
         protected override IQueryable<Class> CreateFilteredQuery(PagedClassResultRequestDto input)
@@ -105,6 +107,16 @@ namespace ECMS.Classes
             }
             return room;
         }
+        // check code class
+        protected async Task<bool> CodeClassIsExists(string code)
+        {
+            var cl = await _repository.FirstOrDefaultAsync(x => x.Code == code);
+            if ( cl !=null)
+            {
+                throw new UserFriendlyException("Lỗi cú pháp", "Mã lớp học đã tồn tại");
+            }
+            return false;
+        }
 
         // Get Class
         public override async Task<ClassDto> GetAsync(EntityDto<long> input)
@@ -132,9 +144,10 @@ namespace ECMS.Classes
         /// <param name="roomId"></param>
         /// <param name="LsWorkShift"></param>
         /// <returns></returns>
-        protected async Task<PagedResultDto<ScheduleDto>> CreateAutomatic(CreateAutomaticDto input)
+        protected async Task<PagedResultDto<ScheduleDto>> CreateScheduleAutomatic(CreateAutomaticDto input)
         {
             DateTime Temp = input.StartTime;
+            var listSchedule = _scheduleRepository.GetAll();
             List<ScheduleDto> result = new();
             while (Temp <= input.EndTime)
             {
@@ -151,9 +164,14 @@ namespace ECMS.Classes
                             DayOfWeek = item.DateOfWeek,
                             Shift = item.ShiftTime
                         };
-                        await _scheduleRepository.InsertAsync(schedule);
-                        var scheduleDto = ObjectMapper.Map<ScheduleDto>(schedule);
-                        result.Add(scheduleDto);
+                        // nếu tồn tại lớp họp thì bỏ qua không thêm
+                        //
+                        if ( !listSchedule.Any( x=> x.RoomId == input.RoomId && x.Date.Date == Temp.Date && x.Shift == item.ShiftTime) )
+                        {
+                            await _scheduleRepository.InsertAsync(schedule);
+                            var scheduleDto = ObjectMapper.Map<ScheduleDto>(schedule);
+                            result.Add(scheduleDto);
+                        }
                     }
                 }
                 UnitOfWorkManager.Current.SaveChanges();
@@ -169,6 +187,7 @@ namespace ECMS.Classes
             CheckCreatePermission();
             await CheckCourseIsExists(input.CourseId);
             await CheckRoomIsExists(input.RoomId);
+            await CodeClassIsExists(input.Code);
             var classRoom = ObjectMapper.Map<Class>(input);
             var createClassId = await Repository.InsertAndGetIdAsync(classRoom);
             var createAutomaticDto = new CreateAutomaticDto
@@ -180,7 +199,7 @@ namespace ECMS.Classes
                 ListWorkShifts = input.lsWorkSheet,
             };
 
-            await CreateAutomatic(createAutomaticDto);
+            await CreateScheduleAutomatic(createAutomaticDto);
             var getCreateClassId = new EntityDto<long> { Id = createClassId };
             return await GetAsync(getCreateClassId);
         }
