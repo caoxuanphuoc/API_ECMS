@@ -63,7 +63,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpEditions");
+                    b.ToTable("AbpEditions", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Application.Features.FeatureSetting", b =>
@@ -99,7 +99,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpFeatures");
+                    b.ToTable("AbpFeatures", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("FeatureSetting");
 
@@ -179,7 +179,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpAuditLogs");
+                    b.ToTable("AbpAuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.PermissionSetting", b =>
@@ -215,7 +215,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "Name");
 
-                    b.ToTable("AbpPermissions");
+                    b.ToTable("AbpPermissions", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PermissionSetting");
 
@@ -255,7 +255,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "ClaimType");
 
-                    b.ToTable("AbpRoleClaims");
+                    b.ToTable("AbpRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserAccount", b =>
@@ -316,7 +316,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "UserName");
 
-                    b.ToTable("AbpUserAccounts");
+                    b.ToTable("AbpUserAccounts", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserClaim", b =>
@@ -352,7 +352,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "ClaimType");
 
-                    b.ToTable("AbpUserClaims");
+                    b.ToTable("AbpUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserLogin", b =>
@@ -391,7 +391,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "LoginProvider", "ProviderKey");
 
-                    b.ToTable("AbpUserLogins");
+                    b.ToTable("AbpUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserLoginAttempt", b =>
@@ -440,7 +440,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenancyName", "UserNameOrEmailAddress", "Result");
 
-                    b.ToTable("AbpUserLoginAttempts");
+                    b.ToTable("AbpUserLoginAttempts", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserOrganizationUnit", b =>
@@ -475,7 +475,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpUserOrganizationUnits");
+                    b.ToTable("AbpUserOrganizationUnits", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserRole", b =>
@@ -509,7 +509,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpUserRoles");
+                    b.ToTable("AbpUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Authorization.Users.UserToken", b =>
@@ -547,7 +547,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpUserTokens");
+                    b.ToTable("AbpUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Abp.BackgroundJobs.BackgroundJobInfo", b =>
@@ -593,7 +593,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("IsAbandoned", "NextTryTime");
 
-                    b.ToTable("AbpBackgroundJobs");
+                    b.ToTable("AbpBackgroundJobs", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Configuration.Setting", b =>
@@ -637,7 +637,7 @@ namespace ECMS.Migrations
                     b.HasIndex("TenantId", "Name", "UserId")
                         .IsUnique();
 
-                    b.ToTable("AbpSettings");
+                    b.ToTable("AbpSettings", (string)null);
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicEntityProperty", b =>
@@ -666,7 +666,7 @@ namespace ECMS.Migrations
                         .IsUnique()
                         .HasFilter("[EntityFullName] IS NOT NULL AND [TenantId] IS NOT NULL");
 
-                    b.ToTable("AbpDynamicEntityProperties");
+                    b.ToTable("AbpDynamicEntityProperties", (string)null);
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicEntityPropertyValue", b =>
@@ -694,7 +694,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("DynamicEntityPropertyId");
 
-                    b.ToTable("AbpDynamicEntityPropertyValues");
+                    b.ToTable("AbpDynamicEntityPropertyValues", (string)null);
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicProperty", b =>
@@ -727,7 +727,7 @@ namespace ECMS.Migrations
                         .IsUnique()
                         .HasFilter("[PropertyName] IS NOT NULL AND [TenantId] IS NOT NULL");
 
-                    b.ToTable("AbpDynamicProperties");
+                    b.ToTable("AbpDynamicProperties", (string)null);
                 });
 
             modelBuilder.Entity("Abp.DynamicEntityProperties.DynamicPropertyValue", b =>
@@ -752,7 +752,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("DynamicPropertyId");
 
-                    b.ToTable("AbpDynamicPropertyValues");
+                    b.ToTable("AbpDynamicPropertyValues", (string)null);
                 });
 
             modelBuilder.Entity("Abp.EntityHistory.EntityChange", b =>
@@ -789,7 +789,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("EntityTypeFullName", "EntityId");
 
-                    b.ToTable("AbpEntityChanges");
+                    b.ToTable("AbpEntityChanges", (string)null);
                 });
 
             modelBuilder.Entity("Abp.EntityHistory.EntityChangeSet", b =>
@@ -842,7 +842,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpEntityChangeSets");
+                    b.ToTable("AbpEntityChangeSets", (string)null);
                 });
 
             modelBuilder.Entity("Abp.EntityHistory.EntityPropertyChange", b =>
@@ -885,7 +885,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("EntityChangeId");
 
-                    b.ToTable("AbpEntityPropertyChanges");
+                    b.ToTable("AbpEntityPropertyChanges", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Localization.ApplicationLanguage", b =>
@@ -941,7 +941,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "Name");
 
-                    b.ToTable("AbpLanguages");
+                    b.ToTable("AbpLanguages", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Localization.ApplicationLanguageText", b =>
@@ -991,7 +991,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "Source", "LanguageName", "Key");
 
-                    b.ToTable("AbpLanguageTexts");
+                    b.ToTable("AbpLanguageTexts", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Notifications.NotificationInfo", b =>
@@ -1052,7 +1052,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpNotifications");
+                    b.ToTable("AbpNotifications", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Notifications.NotificationSubscriptionInfo", b =>
@@ -1099,7 +1099,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "NotificationName", "EntityTypeName", "EntityId", "UserId");
 
-                    b.ToTable("AbpNotificationSubscriptions");
+                    b.ToTable("AbpNotificationSubscriptions", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Notifications.TenantNotificationInfo", b =>
@@ -1149,7 +1149,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId");
 
-                    b.ToTable("AbpTenantNotifications");
+                    b.ToTable("AbpTenantNotifications", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Notifications.UserNotificationInfo", b =>
@@ -1181,7 +1181,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("UserId", "State", "CreationTime");
 
-                    b.ToTable("AbpUserNotifications");
+                    b.ToTable("AbpUserNotifications", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Organizations.OrganizationUnit", b =>
@@ -1235,7 +1235,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "Code");
 
-                    b.ToTable("AbpOrganizationUnits");
+                    b.ToTable("AbpOrganizationUnits", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Organizations.OrganizationUnitRole", b =>
@@ -1270,7 +1270,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "RoleId");
 
-                    b.ToTable("AbpOrganizationUnitRoles");
+                    b.ToTable("AbpOrganizationUnitRoles", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Webhooks.WebhookEvent", b =>
@@ -1300,7 +1300,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpWebhookEvents");
+                    b.ToTable("AbpWebhookEvents", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Webhooks.WebhookSendAttempt", b =>
@@ -1334,7 +1334,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("WebhookEventId");
 
-                    b.ToTable("AbpWebhookSendAttempts");
+                    b.ToTable("AbpWebhookSendAttempts", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Webhooks.WebhookSubscriptionInfo", b =>
@@ -1371,7 +1371,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpWebhookSubscriptions");
+                    b.ToTable("AbpWebhookSubscriptions", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Authorization.Roles.Role", b =>
@@ -1446,7 +1446,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "NormalizedName");
 
-                    b.ToTable("AbpRoles");
+                    b.ToTable("AbpRoles", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Authorization.Users.User", b =>
@@ -1574,7 +1574,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "NormalizedUserName");
 
-                    b.ToTable("AbpUsers");
+                    b.ToTable("AbpUsers", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Classes.Class", b =>
@@ -1637,7 +1637,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("AbpClass");
+                    b.ToTable("AbpClass", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Classes.Rooms.Room", b =>
@@ -1677,7 +1677,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpRoom");
+                    b.ToTable("AbpRoom", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Courses.Course", b =>
@@ -1723,7 +1723,7 @@ namespace ECMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpCourse");
+                    b.ToTable("AbpCourse", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.HomeWorks.Homework", b =>
@@ -1769,7 +1769,7 @@ namespace ECMS.Migrations
                     b.HasIndex("PostId")
                         .IsUnique();
 
-                    b.ToTable("AbpHomeworks");
+                    b.ToTable("AbpHomeworks", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.HomeWorks.SubmitHomework", b =>
@@ -1823,7 +1823,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("HomeworkId");
 
-                    b.ToTable("AbpSubmitHomeworks");
+                    b.ToTable("AbpSubmitHomeworks", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.MultiTenancy.Tenant", b =>
@@ -1887,7 +1887,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenancyName");
 
-                    b.ToTable("AbpTenants");
+                    b.ToTable("AbpTenants", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Payment.TuitionFee", b =>
@@ -1932,7 +1932,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("AbpTuitionFee");
+                    b.ToTable("AbpTuitionFee", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.ScheduleManage.Schedules.Schedule", b =>
@@ -1985,7 +1985,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("AbpSchedule");
+                    b.ToTable("AbpSchedule", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Social.Comments.Comment", b =>
@@ -2030,7 +2030,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("AbpComments");
+                    b.ToTable("AbpComments", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.Social.Posts.Post", b =>
@@ -2081,7 +2081,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.ToTable("AbpPosts");
+                    b.ToTable("AbpPosts", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.UserClassN.Teacher", b =>
@@ -2132,7 +2132,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpTeacher");
+                    b.ToTable("AbpTeacher", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.UserClassN.TrackingClass", b =>
@@ -2177,7 +2177,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("AbpTrackingClass");
+                    b.ToTable("AbpTrackingClass", (string)null);
                 });
 
             modelBuilder.Entity("ECMS.UserClassN.UserClass", b =>
@@ -2233,7 +2233,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpUserClass");
+                    b.ToTable("AbpUserClass", (string)null);
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -2245,7 +2245,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("EditionId", "Name");
 
-                    b.ToTable("AbpFeatures");
+                    b.ToTable("AbpFeatures", (string)null);
 
                     b.HasDiscriminator().HasValue("EditionFeatureSetting");
                 });
@@ -2256,7 +2256,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("TenantId", "Name");
 
-                    b.ToTable("AbpFeatures");
+                    b.ToTable("AbpFeatures", (string)null);
 
                     b.HasDiscriminator().HasValue("TenantFeatureSetting");
                 });
@@ -2270,7 +2270,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AbpPermissions");
+                    b.ToTable("AbpPermissions", (string)null);
 
                     b.HasDiscriminator().HasValue("RolePermissionSetting");
                 });
@@ -2284,7 +2284,7 @@ namespace ECMS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpPermissions");
+                    b.ToTable("AbpPermissions", (string)null);
 
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
                 });
