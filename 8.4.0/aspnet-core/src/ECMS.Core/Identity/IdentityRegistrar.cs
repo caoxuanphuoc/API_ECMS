@@ -14,7 +14,10 @@ namespace ECMS.Identity
         {
             services.AddLogging();
 
-            return services.AddAbpIdentity<Tenant, User, Role>()
+            return services.AddAbpIdentity<Tenant, User, Role>(option => {
+                option.User.RequireUniqueEmail = true;
+                }
+            )
                 .AddAbpTenantManager<TenantManager>()
                 .AddAbpUserManager<UserManager>()
                 .AddAbpRoleManager<RoleManager>()
