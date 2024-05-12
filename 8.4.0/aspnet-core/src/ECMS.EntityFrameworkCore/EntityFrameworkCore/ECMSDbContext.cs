@@ -13,6 +13,7 @@ using ECMS.Social.Posts;
 using ECMS.HomeWorks;
 using ECMS.Social.Comments;
 using ECMS.ScheduleManage;
+using ECMS.Order;
 
 namespace ECMS.EntityFrameworkCore
 {
@@ -32,6 +33,8 @@ namespace ECMS.EntityFrameworkCore
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SubmitHomework> SubmitHomeWorks { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrderHistory> OrderHistories { get; set; }
         public ECMSDbContext(DbContextOptions<ECMSDbContext> options)
             : base(options)
         {
