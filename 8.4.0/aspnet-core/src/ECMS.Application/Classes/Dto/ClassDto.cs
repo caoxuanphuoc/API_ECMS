@@ -18,5 +18,6 @@ namespace ECMS.Classes.Dto
         public int LessionTimes { get; set; }
         public bool IsActive { get; set; }
         public int NumberSchedule { get; set; }
+        public string Image { get; set; }
     }
 }

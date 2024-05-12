@@ -33,5 +33,6 @@ namespace ECMS.Classes.Dto
         public int RoomId { get; set; }
         [Required]
         public List<WorkShiftDto> lsWorkSheet { get; set; }
-}
+        public string Image { get; set; }
+    }
 }

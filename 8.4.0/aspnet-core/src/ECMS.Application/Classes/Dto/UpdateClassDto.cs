@@ -28,5 +28,6 @@ namespace ECMS.Classes.Dto
         public bool IsActive { get; set; }
         [Required]
         public int RoomId { get; set; }
+        public string Image { get; set; }
     }
 }

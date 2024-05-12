@@ -20,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using System.IO;
+using ECMS.Customer;
 
 namespace ECMS.Web.Host.Startup
 {
@@ -58,7 +59,7 @@ namespace ECMS.Web.Host.Startup
 
             // Configure CORS for angular2 UI
             services.AddCors(
-                options => options.AddPolicy(
+               options => options.AddPolicy(
                     _defaultCorsPolicyName,
                     builder => builder
                         .WithOrigins(
@@ -87,13 +88,14 @@ namespace ECMS.Web.Host.Startup
                     )
                 )
             );
+            services.AddScoped<ICustomerAppService,CustomerAppservice>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
-            app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+            app.UseCors(_defaultCorsPolicyName); // add  to Enable CORS!
 
             app.UseStaticFiles();
 

@@ -26,7 +26,6 @@ using Abp.Linq.Extensions;
 
 namespace ECMS.Classes
 {
-    [AbpAuthorize(PermissionNames.Pages_Classes)]
     public class ClassAppService : AsyncCrudAppService<Class, ClassDto, long, PagedClassResultRequestDto, CreateClassDto, UpdateClassDto>, IClassAppService
     {
         private readonly IRepository<Class, long> _repository;
@@ -182,6 +181,7 @@ namespace ECMS.Classes
         }
 
         //Create new Class
+        [AbpAuthorize(PermissionNames.Pages_Classes)]
         public override async Task<ClassDto> CreateAsync(CreateClassDto input)
         {
             CheckCreatePermission();

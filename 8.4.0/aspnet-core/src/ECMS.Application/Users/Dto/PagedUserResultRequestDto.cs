@@ -7,6 +7,8 @@ namespace ECMS.Users.Dto
     public class PagedUserResultRequestDto : PagedResultRequestDto
     {
         public string Keyword { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
         public bool? IsActive { get; set; }
     }
 }
