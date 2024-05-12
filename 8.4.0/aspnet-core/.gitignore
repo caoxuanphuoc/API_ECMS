@@ -254,3 +254,4 @@ paket-files/
 src/ECMS.Web.Mvc/secrets.json
 src/ECMS.Web.Host/secrets.json
 src/ECMS.Migrator/secrets.json
+src/ECMS.Web.Host/appsettings.json

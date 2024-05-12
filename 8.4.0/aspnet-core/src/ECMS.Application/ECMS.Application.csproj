@@ -14,4 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ECMS.Core\ECMS.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customer\Dto\" />
+  </ItemGroup>
 </Project>

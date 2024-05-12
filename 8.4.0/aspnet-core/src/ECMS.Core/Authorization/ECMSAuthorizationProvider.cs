@@ -12,6 +12,14 @@ namespace ECMS.Authorization
             context.CreatePermission(PermissionNames.Pages_Users_Activation, L("UsersActivation"));
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
+
+            context.CreatePermission(PermissionNames.Pages_Courses, L("CoursesPer"));
+
+            context.CreatePermission(PermissionNames.Pages_Classes, L("ClassesPer"));
+            context.CreatePermission(PermissionNames.Pages_UserClasses, L("UserClassPer"));
+            context.CreatePermission(PermissionNames.Pages_UserClasses_Register, L("UserRegisterClassPer"));
+
+            context.CreatePermission(PermissionNames.Pages_Teachers, L("TeacherPer"));
         }
 
         private static ILocalizableString L(string name)

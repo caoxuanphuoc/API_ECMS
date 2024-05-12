@@ -43,7 +43,8 @@ namespace ECMS.Controllers
             var loginResult = await GetLoginResultAsync(
                 model.UserNameOrEmailAddress,
                 model.Password,
-                GetTenancyNameOrNull()
+                "Default"
+            //GetTenancyNameOrNull()
             );
 
             var accessToken = CreateAccessToken(CreateJwtClaims(loginResult.Identity));
