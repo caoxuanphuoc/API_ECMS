@@ -21,6 +21,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using System.IO;
 using ECMS.Customer;
+using ECMS.Payment;
 
 namespace ECMS.Web.Host.Startup
 {
@@ -89,6 +90,7 @@ namespace ECMS.Web.Host.Startup
                 )
             );
             services.AddScoped<ICustomerAppService,CustomerAppservice>();
+            services.AddSingleton<IPaymentAppService,PaymentAppService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
