@@ -24,7 +24,8 @@ namespace ECMS.Classes
         [ForeignKey("Course")]
         public long CourseId { get; set; }
         public Course Course { get; set; }
+        public string Image { get; set; }
         //public ICollection<Schedule> Schedules { get; set; }
-       //public ICollection<UserClass> UserClasses { get; set; }
+        //public ICollection<UserClass> UserClasses { get; set; }
     }
 }
