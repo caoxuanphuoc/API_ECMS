@@ -88,7 +88,7 @@ namespace ECMS.OrderDomain.Order
         {
             var queryOrder = from order in Repository.GetAllIncluding(x => x.User, y=> y.Class)
                              join history in _orderHistoryRepository.GetAll()
-                             on order.Id equals history.OderId into jointable
+                             on order.OrderCode equals history.OrderCode into jointable
                              from p in jointable.DefaultIfEmpty()
                              select new HistoryOrderDto
                              {

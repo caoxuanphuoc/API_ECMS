@@ -47,11 +47,12 @@ namespace ECMS.Controllers
             var orderData = await _orderAppService.CreateAsync(dataOrder);
 
             VnPaymentRequestDto dataVnPay = new VnPaymentRequestDto {
-            OrderId = orderData.Id,
-            FullName = input.FullName,
-            Description = orderData.OrderCode,
-            Amount = orderData.TotalCost,
-            CreatedDate = DateTime.Now,
+                OrderId = orderData.Id,
+                FullName = input.FullName,
+                OrderCode = orderData.OrderCode,
+                Description = $"Thanh toan hoa don {orderData.OrderCode}",
+                Amount = orderData.TotalCost,
+                CreatedDate = DateTime.Now,
 
             };
             var url = _paymentService.GetPaymentRequest(HttpContext, dataVnPay);
