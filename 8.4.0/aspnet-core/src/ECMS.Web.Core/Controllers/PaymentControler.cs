@@ -20,19 +20,17 @@ namespace ECMS.Controllers
         [Route("api/[controller]/[action]")]
     public class PaymentControler: ECMSControllerBase
     {
-        private readonly HttpContext _context;
         private readonly IPaymentAppService _paymentService;
         private readonly IOrderAppService _orderAppService;
-        public PaymentControler(HttpContext context,
+        public PaymentControler(
             IPaymentAppService paymentService,
             OrderAppService orderAppService)
         {
-            _context = context;
             _paymentService = paymentService;
             _orderAppService = orderAppService;
         }
-        [HttpGet]
-        public async Task<string> PaymentConfirm(ValidateOrderDto input)
+        [HttpPost]
+        public async Task<string> PaymentConfirm( [FromBody] ValidateOrderDto input)
         {
             decimal discount = input.Fee / 10;
             CreateOrderDto dataOrder = new CreateOrderDto
@@ -51,12 +49,12 @@ namespace ECMS.Controllers
             VnPaymentRequestDto dataVnPay = new VnPaymentRequestDto {
             OrderId = orderData.Id,
             FullName = input.FullName,
-            Description = $"Thanh Toán hóa đơn {orderData.OrderCode}",
+            Description = orderData.OrderCode,
             Amount = orderData.TotalCost,
             CreatedDate = DateTime.Now,
 
             };
-            var url = _paymentService.GetPaymentRequest(_context, dataVnPay);
+            var url = _paymentService.GetPaymentRequest(HttpContext, dataVnPay);
             return url;
 
         }

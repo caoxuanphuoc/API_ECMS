@@ -14,6 +14,7 @@ using ECMS.OrderDomain.Order.Dto.ValidateOrderDto;
 using ECMS.ScheduleManage.Schedules;
 using ECMS.Schedules.Dto;
 using ECMS.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -114,6 +115,7 @@ namespace ECMS.OrderDomain.Order
             var dtos = ObjectMapper.Map<List<HistoryOrderDto>>(entities);
             return new PagedResultDto<HistoryOrderDto>(totalCount, dtos);
         }
+        //[Authorize]
 
         public async Task<ValidateOrderDto> ValidateOrder(CreateValidateOrderDto input)
         {
