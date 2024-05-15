@@ -14,8 +14,8 @@ namespace ECMS.Order
         public string TransactionNo { get; set; }   
         public long ResponseCode { get; set; }
         public string Message { get; set; }
-        [ForeignKey("Order")]
-        public long OderId { get; set; }
+        [ForeignKey("OrderCode")]
+        public string OrderCode { get; set; }
         public Orders Order { get; set; }
 
     }
