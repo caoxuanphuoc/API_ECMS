@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using ECMS.Classes.Dto;
+using ECMS.Classes.UserClass;
 using ECMS.UserClassN;
 using ECMS.Users.Dto;
 using System;

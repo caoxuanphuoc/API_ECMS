@@ -8,10 +8,8 @@ using Abp.UI;
 using AutoMapper.Internal.Mappers;
 using ECMS.Authorization.Users;
 using ECMS.Authorization;
-using ECMS.Classes;
 using ECMS.Payment;
 using ECMS.UserClasses.Dto;
-using ECMS.UserClassN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +18,9 @@ using System.Threading.Tasks;
 using ECMS.Authorization.Roles;
 using Microsoft.EntityFrameworkCore;
 using Abp.Extensions;
+using ECMS.Classes.UserClass;
+using ECMS.UserClassN;
+using ECMS.Classes;
 
 namespace ECMS.UserClasses
 {

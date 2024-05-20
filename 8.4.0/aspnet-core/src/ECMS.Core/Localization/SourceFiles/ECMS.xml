@@ -6,9 +6,17 @@
 	<text name="TeacherPer" value="Quyền CURD giáo viên" />
 	<text name="UserClassPer" value="Quyền CRUD các thành viên trong lớp" />
 
-	  <text name="UserRegisterClassPer" value="Quyền đăng ký vào lớp" />
+	<text name="---------------------------" value="CAC DANH MUC------------------------------------" />
+
+	  <text name="UserClasses" value="Quản lý học viên" />
+	  <text name="Courses" value="Quản lý khóa học" />
+	  <text name="Rooms" value="Quản lý phòng học" />
+
+	<text name="==---------------------------" value="CAC DANH MUC------------------------------------" />
+
+	<text name="UserRegisterClassPer" value="Quyền đăng ký vào lớp" />
 	  
-	  <text name="HomePage" value="Home page" />
+	<text name="HomePage" value="Home page" />
     <text name="About" value="About" />
     <text name="WelcomeMessage" value="Welcome to ECMS!" />
     <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />

@@ -4,6 +4,7 @@ using Abp.Authorization;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
+using Castle.MicroKernel.Registration;
 using ECMS.Authorization;
 using ECMS.Classes;
 using ECMS.Classes.Rooms;
@@ -15,6 +16,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ECMS.Schedules
 {
@@ -114,5 +116,56 @@ namespace ECMS.Schedules
             hashedString = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             return hashedString;
         }
+        public async Task<bool> DeleteList(DeleteListInTime input)
+        {
+            var queryDelete = await Repository.GetAll().Where(x
+               => x.ClassId == input.IdClass
+               && x.Date >= input.DateStart
+               && x.Date <= input.DateEnd
+           ).ToListAsync();
+            if (queryDelete.Any())
+            {
+                foreach (var item in queryDelete)
+                {
+                    Repository.Delete(item);
+                }
+            }
+            await CurrentUnitOfWork.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> CreateList(CreateInTime input)
+        {
+           
+            DateTime dateTimeDiff = input.DateStart;
+            while (dateTimeDiff <= input.DateEnd)
+            {
+                var querry = Repository.GetAll().Where(x 
+                    => x.Date.Date == dateTimeDiff.Date
+                    && x.RoomId == input.RoomId
+                    && x.DayOfWeek == input.DayOfWeek
+                    && x.Shift == input.Shift
+                    );
+                var isExist = await querry.CountAsync();
+                if (isExist ==0)
+                {
+                    var schedule = new Schedule
+                    {
+                        Date = dateTimeDiff,
+                        ClassId = input.ClassId,
+                        RoomId = input.RoomId,
+                        DayOfWeek = input.DayOfWeek,
+                        Shift = input.Shift,
+
+                    };
+                if( (int) dateTimeDiff.DayOfWeek ==(int) input.DayOfWeek)
+                    await Repository.InsertAsync(schedule);
+                }
+                    dateTimeDiff = dateTimeDiff.AddDays(1);
+            }
+            await CurrentUnitOfWork.SaveChangesAsync();
+            return true;
+        }
+
     }
 }
