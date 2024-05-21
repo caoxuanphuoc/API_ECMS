@@ -32,11 +32,11 @@ namespace ECMS.Payment
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(httpContext));
             vnpay.AddRequestData("vnp_Locale", _configuration["VnPay:Locale"]);
 
-            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán cho đơn hàng:" + input.OrderId);
+            vnpay.AddRequestData("vnp_OrderInfo",  input.Description);
             vnpay.AddRequestData("vnp_OrderType", "other"); //default value: other
             vnpay.AddRequestData("vnp_ReturnUrl", _configuration["VnPay:PaymentBackReturnUrl"]);
 
-            vnpay.AddRequestData("vnp_TxnRef", tick); // Mã tham chiếu của giao dịch tại hệ thống của merchant. Mã này là duy nhất dùng để phân biệt các đơn hàng gửi sang VNPAY. Không được trùng lặp trong ngày
+            vnpay.AddRequestData("vnp_TxnRef", input.OrderCode.ToString()); // Mã tham chiếu của giao dịch tại hệ thống của merchant. Mã này là duy nhất dùng để phân biệt các đơn hàng gửi sang VNPAY. Không được trùng lặp trong ngày
 
             var paymentUrl = vnpay.CreateRequestUrl(_configuration["VnPay:BaseUrl"], _configuration["VnPay:HashSecret"]);
 

@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using ECMS.Classes.UserClass;
 using ECMS.UserClassN;
 using System;
 using System.Collections.Generic;

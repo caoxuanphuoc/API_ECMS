@@ -14,6 +14,7 @@ using ECMS.HomeWorks;
 using ECMS.Social.Comments;
 using ECMS.ScheduleManage;
 using ECMS.Order;
+using ECMS.Classes.UserClass;
 
 namespace ECMS.EntityFrameworkCore
 {

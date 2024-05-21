@@ -1,5 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
-using ECMS.UserClassN;
+using ECMS.Classes.UserClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

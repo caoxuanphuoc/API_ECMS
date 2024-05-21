@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
-using ECMS.UserClassN;
 using System.ComponentModel.DataAnnotations;
 using System;
+using ECMS.Classes.UserClass;
 
 namespace ECMS.UserClasses.Dto
 {

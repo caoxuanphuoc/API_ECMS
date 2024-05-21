@@ -21,9 +21,7 @@ namespace ECMS.Classes.Dto
         public DateTime EndDate { get; set; }
         [Required]
         public long LimitStudent { get; set; }
-        [Required]
         public long CurrentStudent { get; set; }
-        [Required]
         public int LessionTimes { get; set; }
         [Required]
         public bool IsActive { get; set; }

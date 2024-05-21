@@ -2,6 +2,7 @@
 using ECMS.UserClassN;
 using System.ComponentModel.DataAnnotations;
 using System;
+using ECMS.Classes.UserClass;
 
 namespace ECMS.UserClasses.Dto
 {

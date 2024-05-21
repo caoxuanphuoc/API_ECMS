@@ -16,7 +16,7 @@ namespace ECMS.OrderDomain.OrderHistories.Dto
         public string TransactionNo { get; set; }
         public long ResponseCode { get; set; }
         public string Message { get; set; }
-        public long OderId { get; set; }
+        public string OrderCode { get; set; }
         public Orders Order { get; set; }
     }
 }
