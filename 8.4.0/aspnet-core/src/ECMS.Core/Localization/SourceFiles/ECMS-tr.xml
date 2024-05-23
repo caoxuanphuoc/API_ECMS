@@ -1,121 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="tr">
   <texts>
-    <text name="HomePage" value="Ana Sayfa" />
-    <text name="About" value="Hakkında" />
-    <text name="WelcomeMessage" value="ECMS projesine hoşgeldiniz!" />
-    <text name="FormIsNotValidMessage" value="Form geçerli değil. Lütfen kontrol edip hataları düzeltin." />
-    <text name="TenantNameCanNotBeEmpty" value="Müşteri adı boş bırakılamaz." />
-    <text name="InvalidUserNameOrPassword" value="Kullanıcı adı ya da şifre hatalı." />
-    <text name="ThereIsNoTenantDefinedWithName{0}" value="{0} isminde bir müşteri tanımlı değildir." />
-    <text name="TenantIsNotActive" value="{0} isimli müşteri aktif edilmemiştir." />
-    <text name="UserIsNotActiveAndCanNotLogin" value="{0} isimli kullanıcı pasife alınmıştır ve sisteme giremez." />
-    <text name="UserEmailIsNotConfirmedAndCanNotLogin">E-posta adresiniz doğrulanmadı, giriş yapamazsınız.</text>
-    <text name="UserLockedOutMessage">Kullanıcı hesabı kilitlenmiş. Lütfen bir süre sonra tekrar deneyin.</text>
-    <text name="PleaseEnterLoginInformation" value="Lütfen giriş bilgilerinizi girin" />
-    <text name="TenancyName" value="Müşteri adı" />
-    <text name="UserNameOrEmail" value="Kullanıcı adı ya da e-posta" />
-    <text name="Password" value="Şifre" />
-    <text name="ResetPassword" value="Şifreyi yenile" />
-    <text name="UpdatePassword" value="Şifreyi güncelle" />
-    <text name="RememberMe" value="Beni hatırla" />
-    <text name="LogIn" value="Giriş" />
-    <text name="LoginFailed" value="Giriş başarısız!" />
-    <text name="NameSurname" value="Ad soyad" />
-    <text name="UserName" value="Kullanıcı adı" />
-    <text name="Name" value="İsim" />
-    <text name="Surname" value="Soy isim" />
-    <text name="EmailAddress" value="E-posta adresi" />
-    <text name="Tenants" value="Müşteriler" />
-    <text name="SavedSuccessfully" value="Başarıyla kaydedildi" />
-    <text name="CreateNewTenant" value="Yeni müşteri oluştur" />
-    <text name="AdminEmailAddress" value="Yönetici e-posta adresi" />
-    <text name="AdminPassword" value="Yönetici şifresi" />
-    <text name="Save" value="Kaydet" />
-    <text name="Cancel" value="İptal" />
-    <text name="TenantName_Regex_Description" value="Müşteri adı en az 2 karakter olmalı, bir harfle başlamalı ve harf, rakam, tire ya da alt çizgi ile devam etmelidir." />
-    <text name="DefaultPasswordIs" value="Varsayılan şifre {0}" />
-    <text name="CanBeEmptyToLoginAsHost" value="Host olarak giriş yapmak için boş bırakılabilir." />
-    <text name="Register" value="Kayıt ol" />
-    <text name="OrLoginWith" value="Ya da şununla giriş yap" />
-    <text name="WaitingForActivationMessage" value="Hesabınız sistem yöneticisi tarafından etkinleştirilmek için bekliyor." />
-    <text name="TenantSelection" value="Müşteri seçimi" />
-    <text name="TenantSelection_Detail" value="Lütfen aşağıdaki müşterilerden birisini seçin." />
-    <text name="Logout" value="Çıkış" />
-    <text name="RegisterFormUserNameInvalidMessage">Lütfen kullanıcı adı alanına e-posta adresi girmeyin.</text>
-    <text name="DatabaseConnectionString" value="Veritabanı bağlantı cümlesi" />
-    <text name="Users" value="Kullanıcılar" />
-    <text name="IsActive" value="Etkin mi" />
-    <text name="FullName" value="Tam adı" />
-    <text name="CreateNewUser" value="Yeni kullanıcı oluştur" />
-    <text name="Yes" value="Evet" />
-    <text name="No" value="Hayır" />
-    <text name="Optional" value="Opsiyonel" />
-    <text name="LeaveEmptyToSwitchToHost">Üst kullanıcıya geçiş için boş değer girin.</text>
-    <text name="CurrentTenant">Geçerli müşteri</text>
-    <text name="NotSelected">Seçilmemiş</text>
-    <text name="Change">Değiştir</text>
-    <text name="ChangeTenant">Müşteri değiştir</text>
-    <text name="MultiLevelMenu">Çok Seviyeli Menü</text>
-    <text name="Back">Geri</text>
-    <text name="SuccessfullyRegistered">Başarıyla kayıt olundu</text>
-    <text name="WaitingForEmailActivation">E-posta adresiniz etkinleştirilmeli.</text>
-    <text name="Roles">Roller</text>
-    <text name="DisplayName">Görünen ad</text>
-    <text name="Edit">Düzenle</text>
-    <text name="Delete">Sil</text>
-    <text name="CreateNewRole">Yeni rol oluştur</text>
-    <text name="RoleName">Rol adı</text>
-    <text name="Actions">İşlemler</text>
-    <text name="CouldNotCompleteLoginOperation">Giriş işlemi başarısız! Lütfen daha sonra tekrar deneyiniz.</text>
-    <text name="CouldNotValidateExternalUser">Harici kullanıcı doğrulanamadı!</text>
-    <text name="EditRole">Rolü düzenle</text>
-    <text name="EditTenant">Müşteri düzenle</text>
-    <text name="EditUser">Kullanıcı düzenleme</text>
-    <text name="TenantIdIsNotActive{0}">Müşteri id aktif değil: {0}</text>
-    <text name="UnknownTenantId{0}">Müşteri id aktif değil: {0}</text>
-    <text name="ThisFieldIsRequired">Bu alan zorunludur.</text>
-    <text name="PleaseWait">Lütfen bekleyin...</text>
-    <text name="Administration">Yönetim</text>
-    <text name="ClearAll">Hepsini temizle</text>
-    <text name="ClearOthers">Diğerlerini temizle</text>
-    <text name="LabelOptions">Etikent seçenekleri</text>
-    <text name="Permissions">Yetkiler</text>
-    <text name="RoleDescription">Rol tanımı</text>
-    <text name="Refresh">Yenile</text>
-    <text name="Create">Oluştur</text>
-    <text name="UserDetails">Kullanıcı detayları</text>
-    <text name="UserRoles">Kullanıcı rolleri</text>
-    <text name="ConfirmPassword">Şifreyi doğrula</text>
-    <text name="Version">Versiyon</text>
-    <text name="On">Açık</text>
-    <text name="Off">Kapalı</text>
-    <text name="AreYouSureWantToDelete">{0}'i silmek istediğinizden emin misiniz ?</text>
-    <text name="SuccessfullyDeleted">Başarıyla silindi</text>
-    <text name="StartTyping">Yazmaya başla</text>
-    <text name="Skins">Stiller</text>
-    <text name="Settings">Ayarlar</text>
-    <text name="Filter">Filtre</text>
-    <text name="CurrentPassword">Varolan şifre</text>
-    <text name="NewPassword">Yeni şifre</text>
-    <text name="ConfirmNewPassword">Yeni şifreyi doğrula</text>
-    <text name="PasswordsDoNotMatch">Şifreler uyuşmuyor</text>
-    <text name="PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber">Şifreler en az 8 karakter olmalı, küçük harf, büyük harf ve sayı içermelidir</text>
-    <text name="UserDeleteWarningMessage">{0} kullanıcısı silinecektir.</text>
-    <text name="RoleDeleteWarningMessage">{0} rolü silinecek ve atanmış kullanıcılardan kaldırılacaktır.</text>
-    <text name="TenantDeleteWarningMessage">{0} müşterisi silinecektir.</text>
-    <text name="SearchWithThreeDot">Ara...</text>
-    <text name="PleaseEnterAtLeastNCharacter">Lütfen en az {0} karakter giriniz</text>
-    <text name="PleaseEnterNoMoreThanNCharacter">Lütfen en fazla {0} karakter giriniz</text>
-    <text name="InvalidEmailAddress">Geçersiz e-posta adresi</text>
-    <text name="InvalidPattern">Geçersiz</text>
-    <text name="PairsDoNotMatch">Eşleşmiyor</text>
-    <text name="All">Hepsi</text>
-    <text name="TotalRecordsCount">Toplam: {0}</text>
-    <text name="Search">Bul</text>
-    <text name="Clear">Temizle</text>
-    <text name="ResetPasswordStepOneInfo">1. Yönetici şifresini girin</text>
-    <text name="ResetPasswordStepTwoInfo">2. Bu şifreyi kaydettikten sonra ilgili kullanıcıya gönderin</text>
-    <text name="UsersActivation">Kullanıcıları aktifleştirme</text>
+	  <text name="CoursesPer" value="Quyền CURD khóa học" />
+	  <text name="ClassesPer" value="Quyền CURD lớp học" />
+	  <text name="TeacherPer" value="Quyền CURD giáo viên" />
+	  <text name="UserClassPer" value="Quyền CRUD các thành viên trong lớp" />
+
+	  <text name="---------------------------" value="CAC DANH MUC------------------------------------" />
+
+	  <text name="UserClasses" value="Quản lý học viên" />
+	  <text name="Courses" value="Quản lý khóa học" />
+	  <text name="Rooms" value="Quản lý phòng học" />
+
+	  <text name="==---------------------------" value="CAC DANH MUC------------------------------------" />
+
+	  <text name="UserRegisterClassPer" value="Quyền đăng ký vào lớp" />
+
+	  <text name="HomePage" value="Home page" />
+	  <text name="About" value="About" />
+	  <text name="WelcomeMessage" value="Welcome to ECMS!" />
+	  <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
+	  <text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
+	  <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
+	  <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
+	  <text name="TenantIsNotActive" value="Tenant {0} is not active." />
+	  <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
+	  <text name="UserEmailIsNotConfirmedAndCanNotLogin">Your email address is not confirmed. You can not login.</text>
+	  <text name="UserLockedOutMessage">The user account has been locked out. Please try again later.</text>
+	  <text name="PleaseEnterLoginInformation" value="Please enter login information" />
+	  <text name="TenancyName" value="Tenancy name" />
+	  <text name="UserNameOrEmail" value="User name or email" />
+	  <text name="Password" value="Password" />
+	  <text name="ResetPassword" value="Reset Password" />
+	  <text name="UpdatePassword" value="Update Password" />
+	  <text name="RememberMe" value="Remember me" />
+	  <text name="LogIn" value="Log in" />
+	  <text name="LoginFailed" value="Login failed!" />
+	  <text name="NameSurname" value="Name surname" />
+	  <text name="UserName" value="User name" />
+	  <text name="Name" value="Name" />
+	  <text name="Surname" value="Surname" />
+	  <text name="EmailAddress" value="Email address" />
+	  <text name="Tenants" value="Tenants" />
+	  <text name="SavedSuccessfully" value="Saved successfully" />
+	  <text name="CreateNewTenant" value="Create new tenant" />
+	  <text name="AdminEmailAddress" value="Admin email address" />
+	  <text name="AdminPassword" value="Admin password" />
+	  <text name="Save" value="Save" />
+	  <text name="Cancel" value="Cancel" />
+	  <text name="TenantName_Regex_Description" value="Tenant name must be at least 2 chars, starts with a letter and continue with letter, number, dash or underscore." />
+	  <text name="DefaultPasswordIs" value="Default password is {0}" />
+	  <text name="CanBeEmptyToLoginAsHost" value="Can be empty to login as host." />
+	  <text name="Register" value="Register" />
+	  <text name="OrLoginWith" value="Or login with" />
+	  <text name="WaitingForActivationMessage" value="Your account is waiting to be activated by system admin." />
+	  <text name="TenantSelection" value="Tenant Selection" />
+	  <text name="TenantSelection_Detail" value="Please select one of the following tenants." />
+	  <text name="Logout" value="Logout" />
+	  <text name="RegisterFormUserNameInvalidMessage">Please don't enter an email address for username.</text>
+	  <text name="DatabaseConnectionString" value="Database connection string" />
+	  <text name="Users" value="Users" />
+	  <text name="IsActive" value="Is active" />
+	  <text name="FullName" value="Full name" />
+	  <text name="CreateNewUser" value="Create new user" />
+	  <text name="Yes" value="Yes" />
+	  <text name="No" value="No" />
+	  <text name="Optional" value="Optional" />
+	  <text name="LeaveEmptyToSwitchToHost">Leave empty to switch to the host</text>
+	  <text name="CurrentTenant">Current tenant</text>
+	  <text name="NotSelected">Not selected</text>
+	  <text name="Change">Change</text>
+	  <text name="ChangeTenant">Change tenant</text>
+	  <text name="MultiLevelMenu">Multi Level Menu</text>
+	  <text name="Back">Back</text>
+	  <text name="SuccessfullyRegistered">Successfully registered</text>
+	  <text name="WaitingForEmailActivation">Your email address should be activated</text>
+	  <text name="Roles">Roles</text>
+	  <text name="DisplayName">Display Name</text>
+	  <text name="Edit">Edit</text>
+	  <text name="Delete">Delete</text>
+	  <text name="CreateNewRole">Create new role</text>
+	  <text name="RoleName">Role Name</text>
+	  <text name="Actions">Actions</text>
+	  <text name="CouldNotCompleteLoginOperation">Could not complete login operation. Please try again later.</text>
+	  <text name="CouldNotValidateExternalUser">Could not validate external user</text>
+	  <text name="EditRole">Edit role</text>
+	  <text name="EditTenant">Edit tenant</text>
+	  <text name="EditUser">Edit user</text>
+	  <text name="TenantIdIsNotActive{0}">TenantId {0} is not active</text>
+	  <text name="UnknownTenantId{0}">Unknown tenantId {0}</text>
+	  <text name="ThisFieldIsRequired">This field is required</text>
+	  <text name="PleaseWait">Please wait...</text>
+	  <text name="Administration">Administration</text>
+	  <text name="ClearAll">Clear all</text>
+	  <text name="ClearOthers">Clear others</text>
+	  <text name="LabelOptions">Label options</text>
+	  <text name="Permissions">Permissions</text>
+	  <text name="RoleDescription">Role description</text>
+	  <text name="Refresh">Refresh</text>
+	  <text name="Create">Create</text>
+	  <text name="UserDetails">User details</text>
+	  <text name="UserRoles">User roles</text>
+	  <text name="ConfirmPassword">Confirm password</text>
+	  <text name="Version">Version</text>
+	  <text name="On">On</text>
+	  <text name="Off">Off</text>
+	  <text name="AreYouSureWantToDelete">Are you sure want to delete {0}?</text>
+	  <text name="SuccessfullyDeleted">Successfully deleted</text>
+	  <text name="StartTyping">Start Typing</text>
+	  <text name="Skins">Skins</text>
+	  <text name="Settings">Settings</text>
+	  <text name="Filter">Filter</text>
+	  <text name="CurrentPassword">Current Password</text>
+	  <text name="NewPassword">New Password</text>
+	  <text name="ConfirmNewPassword">Confirm New Password</text>
+	  <text name="PasswordsDoNotMatch">Passwords do not match</text>
+	  <text name="PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber">Passwords must be at least 8 characters, contain a lowercase, uppercase, and number</text>
+	  <text name="UserDeleteWarningMessage">User {0} will be deleted.</text>
+	  <text name="RoleDeleteWarningMessage">Role {0} will be deleted and unassigned from all assigned users.</text>
+	  <text name="TenantDeleteWarningMessage">Tenant {0} will be deleted.</text>
+	  <text name="SearchWithThreeDot">Search...</text>
+	  <text name="PleaseEnterAtLeastNCharacter">Please enter at least {0} characters</text>
+	  <text name="PleaseEnterNoMoreThanNCharacter">Please enter no more than {0} characters</text>
+	  <text name="InvalidEmailAddress">Invalid email address</text>
+	  <text name="InvalidPattern">Invalid</text>
+	  <text name="PairsDoNotMatch">Do not match</text>
+	  <text name="All">All</text>
+	  <text name="TotalRecordsCount">Total: {0}</text>
+	  <text name="Search">Search</text>
+	  <text name="Clear">Clear</text>
+	  <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
+	  <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
+	  <text name="UsersActivation">Users activation</text>
   </texts>
 </localizationDictionary>

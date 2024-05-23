@@ -1,131 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="lt">
   <texts>
-    <text name="HomePage" value="Pagrindinis" />
-    <text name="About" value="Apie" />
-    <text name="WelcomeMessage" value="Sveiki atvykė į ECMS!" />
+	  <text name="CoursesPer" value="Quyền CURD khóa học" />
+	  <text name="ClassesPer" value="Quyền CURD lớp học" />
+	  <text name="TeacherPer" value="Quyền CURD giáo viên" />
+	  <text name="UserClassPer" value="Quyền CRUD các thành viên trong lớp" />
 
-    <text name="FormIsNotValidMessage" value="Forma blogai užpildyta. Peržiūrėkite ir pataisykite klaidas." />
-    <text name="TenantNameCanNotBeEmpty" value="Savininko pavadinimas negali būti tuščias" />
+	  <text name="---------------------------" value="CAC DANH MUC------------------------------------" />
 
-    <text name="InvalidUserNameOrPassword" value="Blogas vartotojo vardas ar slaptažodis" />
-    <text name="ThereIsNoTenantDefinedWithName{0}" value="Nėra tokio savininko su pavadinimu {0}" />
-    <text name="TenantIsNotActive" value="Savininkas {0} nėra aktyvus." />
-    <text name="UserIsNotActiveAndCanNotLogin" value="Vartotojas {0} nėra aktyvus ir todėl negali prisijungti." />
-    <text name="UserEmailIsNotConfirmedAndCanNotLogin">Jūsų el. pašto adresas nepatvirtintas. Jūs negalite prisijungti.</text>
-    <text name="UserLockedOutMessage">Vartotojo paskyra buvo užblokuota. Pabandykite dar kartą vėliau.</text>
-    <text name="PleaseEnterLoginInformation" value="Įveskite prisijungimo informaciją" />
-    <text name="TenancyName" value="Savininko pavadinimas" />
-    <text name="UserNameOrEmail" value="Vartotojo vardas ar slaptažodis" />
-    <text name="Password" value="Slaptažodis" />
-    <text name="RememberMe" value="Prisiminti mane" />
-    <text name="LogIn" value="Prisijungti" />
+	  <text name="UserClasses" value="Quản lý học viên" />
+	  <text name="Courses" value="Quản lý khóa học" />
+	  <text name="Rooms" value="Quản lý phòng học" />
 
-    <text name="LoginFailed" value="Prisijungimas nepavyko!" />
+	  <text name="==---------------------------" value="CAC DANH MUC------------------------------------" />
 
-    <text name="NameSurname" value="Vardas pavardė" />
-    <text name="UserName" value="Vartotojo vardas" />
-    <text name="Name" value="Vardas" />
-    <text name="Surname" value="Pavardė" />
-    <text name="EmailAddress" value="El. pašto adresas" />
+	  <text name="UserRegisterClassPer" value="Quyền đăng ký vào lớp" />
 
-    <text name="Tenants" value="Savininkai" />
-    <text name="SavedSuccessfully" value="Išsaugota sėkmingai" />
-    <text name="CreateNewTenant" value="Sukurti naują savininką" />
-    <text name="AdminEmailAddress" value="Administratoriaus el. pašto adresas" />
-    <text name="Save" value="Išsaugoti" />
-    <text name="Cancel" value="Atšaukti" />
-    <text name="TenantName_Regex_Description" value="Savininko pavadinimas privalo būti bent 2 simboliai, prasidėti su raide, skaičiumi, brūkšneliu ar pabraukimu." />
-    <text name="DefaultPasswordIs" value="Slaptažodis pagal nutylėjimą yra {0}" />
-    <text name="CanBeEmptyToLoginAsHost" value="Gali būti tuščia prisijungimui šeimininku." />
-    <text name="Register" value="Registruotis" />
-    <text name="OrLoginWith" value="Arba prisijungti su" />
-    <text name="WaitingForActivationMessage" value="Jūsų paskyra laukia, kol bus aktyvuota sistemos administratoriaus." />
-    <text name="TenantSelection" value="Savininko Pasirinkimas" />
-    <text name="TenantSelection_Detail" value="Pasirinkite vieną iš šių savininkų." />
-    <text name="Logout" value="Atsijungti" />
-
-    <text name="RegisterFormUserNameInvalidMessage">Neveskite el. pašto adreso kaip vartotojo vardo.</text>
-
-    <text name="DatabaseConnectionString" value="Duomenų bazės prisijungimo eilutė" />
-    <text name="Users" value="Vartotojai" />
-    <text name="IsActive" value="Aktyvus" />
-    <text name="FullName" value="Vardas pavardė" />
-    <text name="CreateNewUser" value="Sukurti naują vartotoją" />
-    <text name="Yes" value="Taip" />
-    <text name="No" value="Ne" />
-    <text name="Optional" value="Neprivaloma" />
-    <text name="LeaveEmptyToSwitchToHost">Palikite tuščią, kad perjungtumėte į priimantįjį</text>
-
-    <text name="CurrentTenant">Dabartinis savininkas</text>
-    <text name="NotSelected">Nepasirinkta</text>
-    <text name="Change">Keisti</text>
-    <text name="ChangeTenant">Keisti savininką</text>
-
-    <text name="MultiLevelMenu">Multi Level Menu</text>
-    <text name="Back">Atgal</text>
-    <text name="SuccessfullyRegistered">Sėkmingai užregistruota</text>
-    <text name="WaitingForEmailActivation">Jūsų el. pašto adresas turi būti aktyvuotas.</text>
-    <text name="Roles">Rolės</text>
-    <text name="DisplayName">Rodomas vardas</text>
-
-    <text name="Edit">Keisti</text>
-    <text name="Delete">Trinti</text>
-
-    <text name="CreateNewRole">Kurti naują rolę</text>
-    <text name="RoleName">Rolės pavadinimas</text>
-    <text name="Actions">Veiksmai</text>
-
-    <text name="CouldNotCompleteLoginOperation">Prisijungimo veiksmas nepavyko. Pabandykite vėliau.</text>
-
-    <text name="CouldNotValidateExternalUser">Nepavyko patikrinti išorinio vartotojo</text>
-    <text name="EditRole">Keisti rolę</text>
-    <text name="EditTenant">Keisti savininką</text>
-    <text name="EditUser">Keisti vartotoją</text>
-    <text name="TenantIdIsNotActive{0}">Savininkas su Id {0} yra neaktyvus</text>
-    <text name="UnknownTenantId{0}">Nežinomas savininko Id {0}</text>
-	
-    <text name="ThisFieldIsRequired">Šis laukas yra privalomas</text>
-    <text name="PleaseWait">Prašome palaukti...</text>
-    <text name="Administration">Administration</text>
-    <text name="ClearAll">Išvalyti visus</text>
-    <text name="ClearOthers">Išvalyti kitus</text>
-    <text name="LabelOptions">Etiketės nustatymai</text>
-    <text name="Permissions">Leidimai</text>
-    <text name="RoleDescription">Rolės aprašymas</text>
-    <text name="Refresh">Atnaujinti</text>
-    <text name="Create">Sukurti</text>
-    <text name="UserDetails">Vartotojo detalės</text>
-    <text name="UserRoles">Vartotojo rolės</text>
-    <text name="ConfirmPassword">Patvirtinti slaptažodį</text>
-    <text name="Version">Versija</text>
-    <text name="On">Įjungta</text>
-    <text name="Off">Išjungta</text>
-    <text name="AreYouSureWantToDelete">Ar tikrai norite pašalinti {0}?</text>
-    <text name="StartTyping">Pradėkite rašyti</text>
-    <text name="Skins">Apvalkalai</text>
-    <text name="Settings">Nustatymai</text>
-    <text name="Filter">Filtruoti</text>
-    <text name="CurrentPassword">Dabartinis slaptažodis</text>
-    <text name="NewPassword">Naujas slaptažodis</text>
-    <text name="ConfirmNewPassword">Pakartoti naują slaptažodį</text>
-    <text name="PasswordsDoNotMatch">Slaptažodžiai nesutampa</text>
-    <text name="PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber">Slaptažodžiai turi būti bent 8 simbolių, turėti mažųjų, didžiųjų raidžių ir skaičių</text>
-    <text name="UserDeleteWarningMessage">Vartotojas {0} bus pašalintas.</text>
-    <text name="RoleDeleteWarningMessage">Rolė {0} bus pašalinta ir atskirta nuo visų priskirtų vartotojų.</text>
-    <text name="TenantDeleteWarningMessage">Savininkas {0} bus pašalintas.</text>
-    <text name="SearchWithThreeDot">Ieškoti...</text>
-    <text name="PleaseEnterAtLeastNCharacter">Įveskite bent {0} simbolius</text>
-    <text name="PleaseEnterNoMoreThanNCharacter">Įveskite ne daugiau nei {0} simbolius</text>
-    <text name="InvalidEmailAddress">Nevalidus el. pašto adresas</text>
-    <text name="InvalidPattern">Nevalidus</text>
-    <text name="PairsDoNotMatch">Nesutampa</text>
-    <text name="All">Visi</text>
-    <text name="TotalRecordsCount">Iš viso: {0}</text>
-    <text name="Search">Ieškoti</text>
-    <text name="Clear">Išvalyti</text>
-    <text name="ResetPasswordStepOneInfo">1. Įveskite savo administratoriaus slaptažodį</text>
-    <text name="ResetPasswordStepTwoInfo">2. Nusikopijuokite šį atsitiktinį slaptažodį, kad persiųstumėte vartotojui</text>
-    <text name="UsersActivation">Vartotojų aktyvacija</text>
+	  <text name="HomePage" value="Home page" />
+	  <text name="About" value="About" />
+	  <text name="WelcomeMessage" value="Welcome to ECMS!" />
+	  <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
+	  <text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
+	  <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
+	  <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
+	  <text name="TenantIsNotActive" value="Tenant {0} is not active." />
+	  <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
+	  <text name="UserEmailIsNotConfirmedAndCanNotLogin">Your email address is not confirmed. You can not login.</text>
+	  <text name="UserLockedOutMessage">The user account has been locked out. Please try again later.</text>
+	  <text name="PleaseEnterLoginInformation" value="Please enter login information" />
+	  <text name="TenancyName" value="Tenancy name" />
+	  <text name="UserNameOrEmail" value="User name or email" />
+	  <text name="Password" value="Password" />
+	  <text name="ResetPassword" value="Reset Password" />
+	  <text name="UpdatePassword" value="Update Password" />
+	  <text name="RememberMe" value="Remember me" />
+	  <text name="LogIn" value="Log in" />
+	  <text name="LoginFailed" value="Login failed!" />
+	  <text name="NameSurname" value="Name surname" />
+	  <text name="UserName" value="User name" />
+	  <text name="Name" value="Name" />
+	  <text name="Surname" value="Surname" />
+	  <text name="EmailAddress" value="Email address" />
+	  <text name="Tenants" value="Tenants" />
+	  <text name="SavedSuccessfully" value="Saved successfully" />
+	  <text name="CreateNewTenant" value="Create new tenant" />
+	  <text name="AdminEmailAddress" value="Admin email address" />
+	  <text name="AdminPassword" value="Admin password" />
+	  <text name="Save" value="Save" />
+	  <text name="Cancel" value="Cancel" />
+	  <text name="TenantName_Regex_Description" value="Tenant name must be at least 2 chars, starts with a letter and continue with letter, number, dash or underscore." />
+	  <text name="DefaultPasswordIs" value="Default password is {0}" />
+	  <text name="CanBeEmptyToLoginAsHost" value="Can be empty to login as host." />
+	  <text name="Register" value="Register" />
+	  <text name="OrLoginWith" value="Or login with" />
+	  <text name="WaitingForActivationMessage" value="Your account is waiting to be activated by system admin." />
+	  <text name="TenantSelection" value="Tenant Selection" />
+	  <text name="TenantSelection_Detail" value="Please select one of the following tenants." />
+	  <text name="Logout" value="Logout" />
+	  <text name="RegisterFormUserNameInvalidMessage">Please don't enter an email address for username.</text>
+	  <text name="DatabaseConnectionString" value="Database connection string" />
+	  <text name="Users" value="Users" />
+	  <text name="IsActive" value="Is active" />
+	  <text name="FullName" value="Full name" />
+	  <text name="CreateNewUser" value="Create new user" />
+	  <text name="Yes" value="Yes" />
+	  <text name="No" value="No" />
+	  <text name="Optional" value="Optional" />
+	  <text name="LeaveEmptyToSwitchToHost">Leave empty to switch to the host</text>
+	  <text name="CurrentTenant">Current tenant</text>
+	  <text name="NotSelected">Not selected</text>
+	  <text name="Change">Change</text>
+	  <text name="ChangeTenant">Change tenant</text>
+	  <text name="MultiLevelMenu">Multi Level Menu</text>
+	  <text name="Back">Back</text>
+	  <text name="SuccessfullyRegistered">Successfully registered</text>
+	  <text name="WaitingForEmailActivation">Your email address should be activated</text>
+	  <text name="Roles">Roles</text>
+	  <text name="DisplayName">Display Name</text>
+	  <text name="Edit">Edit</text>
+	  <text name="Delete">Delete</text>
+	  <text name="CreateNewRole">Create new role</text>
+	  <text name="RoleName">Role Name</text>
+	  <text name="Actions">Actions</text>
+	  <text name="CouldNotCompleteLoginOperation">Could not complete login operation. Please try again later.</text>
+	  <text name="CouldNotValidateExternalUser">Could not validate external user</text>
+	  <text name="EditRole">Edit role</text>
+	  <text name="EditTenant">Edit tenant</text>
+	  <text name="EditUser">Edit user</text>
+	  <text name="TenantIdIsNotActive{0}">TenantId {0} is not active</text>
+	  <text name="UnknownTenantId{0}">Unknown tenantId {0}</text>
+	  <text name="ThisFieldIsRequired">This field is required</text>
+	  <text name="PleaseWait">Please wait...</text>
+	  <text name="Administration">Administration</text>
+	  <text name="ClearAll">Clear all</text>
+	  <text name="ClearOthers">Clear others</text>
+	  <text name="LabelOptions">Label options</text>
+	  <text name="Permissions">Permissions</text>
+	  <text name="RoleDescription">Role description</text>
+	  <text name="Refresh">Refresh</text>
+	  <text name="Create">Create</text>
+	  <text name="UserDetails">User details</text>
+	  <text name="UserRoles">User roles</text>
+	  <text name="ConfirmPassword">Confirm password</text>
+	  <text name="Version">Version</text>
+	  <text name="On">On</text>
+	  <text name="Off">Off</text>
+	  <text name="AreYouSureWantToDelete">Are you sure want to delete {0}?</text>
+	  <text name="SuccessfullyDeleted">Successfully deleted</text>
+	  <text name="StartTyping">Start Typing</text>
+	  <text name="Skins">Skins</text>
+	  <text name="Settings">Settings</text>
+	  <text name="Filter">Filter</text>
+	  <text name="CurrentPassword">Current Password</text>
+	  <text name="NewPassword">New Password</text>
+	  <text name="ConfirmNewPassword">Confirm New Password</text>
+	  <text name="PasswordsDoNotMatch">Passwords do not match</text>
+	  <text name="PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber">Passwords must be at least 8 characters, contain a lowercase, uppercase, and number</text>
+	  <text name="UserDeleteWarningMessage">User {0} will be deleted.</text>
+	  <text name="RoleDeleteWarningMessage">Role {0} will be deleted and unassigned from all assigned users.</text>
+	  <text name="TenantDeleteWarningMessage">Tenant {0} will be deleted.</text>
+	  <text name="SearchWithThreeDot">Search...</text>
+	  <text name="PleaseEnterAtLeastNCharacter">Please enter at least {0} characters</text>
+	  <text name="PleaseEnterNoMoreThanNCharacter">Please enter no more than {0} characters</text>
+	  <text name="InvalidEmailAddress">Invalid email address</text>
+	  <text name="InvalidPattern">Invalid</text>
+	  <text name="PairsDoNotMatch">Do not match</text>
+	  <text name="All">All</text>
+	  <text name="TotalRecordsCount">Total: {0}</text>
+	  <text name="Search">Search</text>
+	  <text name="Clear">Clear</text>
+	  <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
+	  <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
+	  <text name="UsersActivation">Users activation</text>
   </texts>
 </localizationDictionary>
