@@ -8,11 +8,11 @@ namespace ECMS.ScheduleManage.Schedules
 {
     public enum Shift
     {
-        Tiet_1_2,
-        Tiet_3_4,
-        Tiet_5_6,
-        Tiet_7_8,
-        Tiet_9_10,
-        Tiet_11_12,
+        Tiet_1_2, //6:30 đến 9
+        Tiet_3_4, //8:30 đến 11
+        Tiet_5_6,//7:30 đến 9
+        Tiet_7_8,//7:30 đến 9
+        Tiet_9_10,//7:30 đến 9
+        Tiet_11_12,//7:30 đến 9
     }
 }
