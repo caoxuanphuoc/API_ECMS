@@ -22,12 +22,13 @@ using Newtonsoft.Json.Serialization;
 using System.IO;
 using ECMS.Customer;
 using ECMS.Payment;
+using ECMS.Checkin;
 
 namespace ECMS.Web.Host.Startup
 {
     public class Startup
     {
-        private const string _defaultCorsPolicyName = "localhost";
+        private const string _defaultCorsPolicyName = "AllowAllOrigins";
 
         private const string _apiVersion = "v1";
 
@@ -59,7 +60,7 @@ namespace ECMS.Web.Host.Startup
             services.AddSignalR();
 
             // Configure CORS for angular2 UI
-            services.AddCors(
+           /* services.AddCors(
                options => options.AddPolicy(
                     _defaultCorsPolicyName,
                     builder => builder
@@ -70,12 +71,22 @@ namespace ECMS.Web.Host.Startup
                                 .Select(o => o.RemovePostFix("/"))
                                 .ToArray()
                         )
+                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials()
                 )
-            );
-
+            );*/
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
             ConfigureSwagger(services);
 
@@ -91,6 +102,7 @@ namespace ECMS.Web.Host.Startup
             );
             services.AddScoped<ICustomerAppService,CustomerAppservice>();
             services.AddSingleton<IPaymentAppService,PaymentAppService>();
+            services.AddScoped<ITrackingAppService, TrackingAppService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
