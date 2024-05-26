@@ -62,35 +62,47 @@ namespace ECMS.Checkin
                 ClassId = x.Class.Id ,
                 CheckinTime = DateTime.Now ,
                 StudentId = x.Id
-            }).FirstOrDefaultAsync();
+            }).AsNoTracking().FirstOrDefaultAsync();
             if(studentifor != null)
             {
 
                 var chooseSchedule =await lsClassOn.Include(x=> x.Room).FirstOrDefaultAsync(x => studentifor.ClassId == x.ClassId);
 
                 var checkIned =  await _trackngRepository.FirstOrDefaultAsync(x => x.ScheduleId == chooseSchedule.Id);
-                if(checkIned != null)
-                    throw new UserFriendlyException($"{studentifor.FullName} đã điểm danh cho lớp {studentifor.ClassName} rồi nha.");
 
-                var roomInfo = await _classRepository.GetAll().Where( x=> x.Id == studentifor.ClassId)
+                
+                if(checkIned == null)
+                {
+                    studentifor.RoomName = chooseSchedule.Room.RoomName;
+                    var trackingData = new TrackingClass
+                    {
+                        CheckInTime = studentifor.CheckinTime,
+                        StudentId = studentifor.StudentId,
+                        ScheduleId = chooseSchedule.Id,
+                    };
+                    await _trackngRepository.InsertAsync(trackingData);
+                    studentifor.Notification = "Điểm danh thành công";
+                }
+                else
+                {
+                    var roomInfo = await _classRepository.GetAll().Where(x => x.Id == studentifor.ClassId)
                                 .Include(x => x.Course)
                                 .FirstOrDefaultAsync();
-                studentifor.CourseName = roomInfo.Course.CourseName;
-                studentifor.RoomName = chooseSchedule.Room.RoomName;
-                var trackingData = new TrackingClass
-                {
-                    CheckInTime = studentifor.CheckinTime,
-                    StudentId = studentifor.StudentId,
-                    ScheduleId = chooseSchedule.Id,
-                };
-                await _trackngRepository.InsertAsync(trackingData);
+                    studentifor.CourseName = roomInfo.Course.CourseName;
+                    studentifor.Notification = $"{studentifor.FullName} đã điểm danh cho lớp {studentifor.ClassName} rồi nha.";
+                }
                 return studentifor;
 
             }
             else
             {
-                throw new UserFriendlyException($"Chưa đến giờ học nha");
+                var res = new DetailScheduleDto
+                {
+                    Notification = $"Chưa đến giờ học nha"
+                };
+                return res;
             }
+
 
         }
 
