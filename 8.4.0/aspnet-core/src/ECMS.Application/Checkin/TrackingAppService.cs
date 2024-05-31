@@ -62,7 +62,7 @@ namespace ECMS.Checkin
                 ClassId = x.Class.Id ,
                 CheckinTime = DateTime.Now ,
                 StudentId = x.Id
-            }).FirstOrDefaultAsync();
+            }).AsNoTracking().FirstOrDefaultAsync();
             if(studentifor != null)
             {
 
@@ -72,18 +72,27 @@ namespace ECMS.Checkin
                 if(checkIned != null)
                     throw new UserFriendlyException(400,$"{studentifor.FullName} đã điểm danh cho lớp {studentifor.ClassName} rồi nha.");
 
-                var roomInfo = await _classRepository.GetAll().Where( x=> x.Id == studentifor.ClassId)
+                
+                if(checkIned == null)
+                {
+                    studentifor.RoomName = chooseSchedule.Room.RoomName;
+                    var trackingData = new TrackingClass
+                    {
+                        CheckInTime = studentifor.CheckinTime,
+                        StudentId = studentifor.StudentId,
+                        ScheduleId = chooseSchedule.Id,
+                    };
+                    await _trackngRepository.InsertAsync(trackingData);
+                    studentifor.Notification = "Điểm danh thành công";
+                }
+                else
+                {
+                    var roomInfo = await _classRepository.GetAll().Where(x => x.Id == studentifor.ClassId)
                                 .Include(x => x.Course)
                                 .FirstOrDefaultAsync();
-                studentifor.CourseName = roomInfo.Course.CourseName;
-                studentifor.RoomName = chooseSchedule.Room.RoomName;
-                var trackingData = new TrackingClass
-                {
-                    CheckInTime = studentifor.CheckinTime,
-                    StudentId = studentifor.StudentId,
-                    ScheduleId = chooseSchedule.Id,
-                };
-                await _trackngRepository.InsertAsync(trackingData);
+                    studentifor.CourseName = roomInfo.Course.CourseName;
+                    studentifor.Notification = $"{studentifor.FullName} đã điểm danh cho lớp {studentifor.ClassName} rồi nha.";
+                }
                 return studentifor;
 
             }
@@ -91,6 +100,7 @@ namespace ECMS.Checkin
             {
                 throw new UserFriendlyException(400,$"Chưa đến giờ học nha");
             }
+
 
         }
 
