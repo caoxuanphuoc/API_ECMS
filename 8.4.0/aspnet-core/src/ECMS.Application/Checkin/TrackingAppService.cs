@@ -71,9 +71,11 @@ namespace ECMS.Checkin
                 var checkIned =  await _trackngRepository.FirstOrDefaultAsync(x => x.ScheduleId == chooseSchedule.Id && x.StudentId == studentifor.StudentId);
                 if(checkIned != null)
                     throw new UserFriendlyException(400,$"{studentifor.FullName} đã điểm danh cho lớp {studentifor.ClassName} rồi nha.");
+                var roomInfo = await _classRepository.GetAll().Where(x => x.Id == studentifor.ClassId)
+                                .Include(x => x.Course)
+                                .FirstOrDefaultAsync();
 
-                
-                if(checkIned == null)
+                if (checkIned == null)
                 {
                     studentifor.RoomName = chooseSchedule.Room.RoomName;
                     var trackingData = new TrackingClass
@@ -84,12 +86,11 @@ namespace ECMS.Checkin
                     };
                     await _trackngRepository.InsertAsync(trackingData);
                     studentifor.Notification = "Điểm danh thành công";
+                    studentifor.CourseName = roomInfo.Course.CourseName;
                 }
                 else
                 {
-                    var roomInfo = await _classRepository.GetAll().Where(x => x.Id == studentifor.ClassId)
-                                .Include(x => x.Course)
-                                .FirstOrDefaultAsync();
+                    
                     studentifor.CourseName = roomInfo.Course.CourseName;
                     studentifor.Notification = $"{studentifor.FullName} đã điểm danh cho lớp {studentifor.ClassName} rồi nha.";
                 }
