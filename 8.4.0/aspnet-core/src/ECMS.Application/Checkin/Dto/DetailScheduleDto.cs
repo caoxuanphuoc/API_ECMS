@@ -16,5 +16,6 @@ namespace ECMS.Checkin.Dto
         public string RoomName { get; set; }
         public DateTime CheckinTime { get; set; }
         public long StudentId { get; set; }
+        public string Notification { get; set; }
     }
 }
