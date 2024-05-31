@@ -32,7 +32,7 @@ namespace ECMS.Controllers
                return Ok(res);
 
             }
-            catch(Exception e) {
+            catch(UserFriendlyException e) {
                return Ok(e);
 
                 throw new UserFriendlyException(e.Message);
