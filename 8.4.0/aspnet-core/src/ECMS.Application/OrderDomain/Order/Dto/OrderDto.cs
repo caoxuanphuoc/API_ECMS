@@ -5,6 +5,7 @@ using ECMS.Classes;
 using ECMS.Classes.Rooms;
 using ECMS.Order;
 using ECMS.Order.Const;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECMS.OrderDomain.Order.Dto
@@ -19,5 +20,6 @@ namespace ECMS.OrderDomain.Order.Dto
         public StatusOrder Status { get; set; }
         public decimal TotalDiscount { get; set; }
         public decimal TotalCost { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }
