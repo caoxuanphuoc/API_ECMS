@@ -1,4 +1,5 @@
-﻿using ECMS.Checkin.Dto;
+﻿using Abp.Application.Services.Dto;
+using ECMS.Checkin.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace ECMS.Checkin
     public interface ITrackingAppService
     {
         Task<DetailScheduleDto> CreateTracking(string QRHash);
+        Task<PagedResultDto<InfoTrackingDto>> GetAll(long classId, int skip, int quantity);
 
     }
 }

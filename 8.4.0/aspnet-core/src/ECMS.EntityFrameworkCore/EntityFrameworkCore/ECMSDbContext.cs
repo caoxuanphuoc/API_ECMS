@@ -15,6 +15,7 @@ using ECMS.Social.Comments;
 using ECMS.ScheduleManage;
 using ECMS.Order;
 using ECMS.Classes.UserClass;
+using ECMS.Report;
 
 namespace ECMS.EntityFrameworkCore
 {
@@ -36,6 +37,9 @@ namespace ECMS.EntityFrameworkCore
         public DbSet<SubmitHomework> SubmitHomeWorks { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderHistory> OrderHistories { get; set; }
+        public DbSet<ReportStatic> ReportStatices { get; set; }
+        public DbSet<ReportByDay> ReportByDay { get; set; }
+
         public ECMSDbContext(DbContextOptions<ECMSDbContext> options)
             : base(options)
         {

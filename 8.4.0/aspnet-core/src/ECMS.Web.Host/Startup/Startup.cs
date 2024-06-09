@@ -23,6 +23,11 @@ using System.IO;
 using ECMS.Customer;
 using ECMS.Payment;
 using ECMS.Checkin;
+using Hangfire;
+using ECMS.Web.Host.Config;
+using ECMS.Background.Recurringjob.ReportStaticJob;
+using ECMS.Background.Recurringjob.ReportByDate;
+using ECMS.Report.ReportStaticService;
 
 namespace ECMS.Web.Host.Startup
 {
@@ -54,8 +59,23 @@ namespace ECMS.Web.Host.Startup
                 };
             });
 
+
+
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
+
+            string hangfireConnections = _appConfiguration.GetValue<string>("ConnectionStrings:HangfireConnect");
+
+            services.AddHangfire(configuration => configuration
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(hangfireConnections));
+
+            // Add the processing server as IHostedService
+            services.AddHangfireServer();
+            // Đăng ký HostedAppService
+            services.AddHostedService<HostedAppService>();
 
             services.AddSignalR();
 
@@ -101,8 +121,13 @@ namespace ECMS.Web.Host.Startup
                 )
             );
             services.AddScoped<ICustomerAppService,CustomerAppservice>();
+            services.AddScoped<IReportStaticAppService, ReportStaticAppService>();
             services.AddSingleton<IPaymentAppService,PaymentAppService>();
+            
             services.AddScoped<ITrackingAppService, TrackingAppService>();
+            services.AddScoped<IReportStaticJob, ReportStaticJob>();
+            services.AddScoped<IReportByDayJob, ReportByDayJob>();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -112,6 +137,7 @@ namespace ECMS.Web.Host.Startup
             app.UseCors(_defaultCorsPolicyName); // add  to Enable CORS!
 
             app.UseStaticFiles();
+            app.UseHangfireDashboard();
 
             app.UseRouting();
 
@@ -125,6 +151,8 @@ namespace ECMS.Web.Host.Startup
                 endpoints.MapHub<AbpCommonHub>("/signalr");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHangfireDashboard();
+
             });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint

@@ -71,6 +71,7 @@ namespace ECMS.OrderDomain.Order
               .PageBy(input)
               .ToListAsync();
             var totalCount = await query.CountAsync();
+
             var dtos = ObjectMapper.Map<List<OrderDto>>(entities);
             return new PagedResultDto<OrderDto>(totalCount, dtos);
         }

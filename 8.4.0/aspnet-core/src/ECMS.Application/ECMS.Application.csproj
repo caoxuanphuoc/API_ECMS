@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Customer\Dto\" />
+    <Folder Include="Report\ReportByDayService\" />
   </ItemGroup>
 </Project>

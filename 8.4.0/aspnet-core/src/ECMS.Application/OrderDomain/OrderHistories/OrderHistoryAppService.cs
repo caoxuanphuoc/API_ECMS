@@ -15,16 +15,23 @@ using ECMS.UserClasses;
 using ECMS.UserClasses.Dto;
 using ECMS.Authorization.Users;
 using ECMS.Classes.UserClass;
+using ECMS.Classes;
 
 namespace ECMS.OrderDomain.OrderHistories
 {
     public class OrderHistoryAppService : AsyncCrudAppService<OrderHistory, OrderHistoryDto, long, PagedOrderHistoryResultRequestDto, CreateOrderHistoryDto, UpdateOrderHistoryDto>, IOrderHistoryAppService
     {
         private readonly IRepository<Orders, long> _orderRepo;
-        private readonly IUserClassAppService _userClassAppService;
-        public OrderHistoryAppService(IRepository<OrderHistory, long> repository, IRepository<Orders, long> orderRepo) : base(repository)
+        private readonly IRepository<UserClass, long> _studentRope;
+        public OrderHistoryAppService(IRepository<OrderHistory, long> repository,
+            IRepository<Orders, long> orderRepo,
+            IRepository<UserClass, long> studentRope
+
+            ) : base(repository)
         {
             _orderRepo = orderRepo;
+            _studentRope = studentRope;
+
         }
         public override async Task<OrderHistoryDto> CreateAsync(CreateOrderHistoryDto input)
         {
@@ -33,15 +40,16 @@ namespace ECMS.OrderDomain.OrderHistories
             {
                 order.Status = StatusOrder.Success;
 
-                CreateUserClassDto adduser = new CreateUserClassDto
+                UserClass adduser = new UserClass
                 {
                     UserId = order.UserId,
                     ClassId = order.ClassId,
+                    RoleMember = TypeRole.Student,
                     IsActive = true,
-                    RoleMember = TypeRole.Student
-
+                    OffTimes  =0 ,
+                    DateStart = DateTime.Now,
                 };
-                _userClassAppService.CreateAsync(adduser);
+               await _studentRope.InsertAsync(adduser);
               }
             else
             {

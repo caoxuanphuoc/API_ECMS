@@ -1,11 +1,14 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Application.Services.Dto;
+using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.UI;
+using ECMS.Authorization.Users;
 using ECMS.Checkin.Dto;
 using ECMS.Classes;
 using ECMS.Classes.Rooms;
 using ECMS.Classes.UserClass;
 using ECMS.Common.SystemConst;
+using ECMS.OrderDomain.Order.Dto;
 using ECMS.ScheduleManage.Schedules;
 using ECMS.UserClassN;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +17,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,17 +31,20 @@ namespace ECMS.Checkin
         private readonly IRepository<UserClass, long> _userClassRepository;
         private readonly IRepository<Schedule, long> _scheduleRepository;
         private readonly IRepository<Class, long> _classRepository;
+        private readonly IRepository<User, long> _userRepository;
         public TrackingAppService(
             IRepository<TrackingClass, long> trackngRepository,
             IRepository<UserClass, long> userClassRepository,
              IRepository<Schedule, long> scheduleRepository,
-             IRepository<Class, long> classRepository
+             IRepository<Class, long> classRepository,
+             IRepository<User, long> userRepository
             )
         {
             _trackngRepository = trackngRepository;
             _userClassRepository = userClassRepository;
             _scheduleRepository = scheduleRepository;
             _classRepository = classRepository;
+            _userRepository = userRepository;
         }
         public async Task<DetailScheduleDto> CreateTracking(string QRHash)
         {
@@ -161,6 +169,35 @@ namespace ECMS.Checkin
             return shiftIndex >1 ? (Shift)shiftIndex-1 : (Shift)shiftIndex ;
 
         }
+
+        public async Task<PagedResultDto<InfoTrackingDto>> GetAll(long classId , int skip, int quantity)
+        {
+            var q = _trackngRepository.GetAll().Include(x=> x.UserClass).Include(x=> x.UserClass.Class).Include(x => x.UserClass.User);
+            var query = _trackngRepository.GetAll().Include(x => x.UserClass).Include(x => x.UserClass.Class).Include(x => x.UserClass.User)
+                .Select(n => new InfoTrackingDto
+                {
+                    Id = n.Id,
+                    classId = n.UserClass.ClassId,
+                    UserId = n.UserClass.UserId,
+                    FullName = n.UserClass.User.FullName,
+                    ClassName = n.UserClass.Class.ClassName,
+                    CheckinTime =n.CheckInTime
+                });
+
+            if (classId != null && classId != 0){
+                query = query.Where(x => x.classId == classId); 
+            }
+            var cn = query.Count();
+            query = query.Skip(skip).Take(quantity);
+            var res = await query.ToListAsync();
+            /*   foreach (var item in query)
+               {
+                   var u = _userRepository.Get(item.UserId);
+                   item.FullName = u.FullName;
+               }*/
+            return new PagedResultDto<InfoTrackingDto>(cn, res); ;
+        }
+
     }
 
 

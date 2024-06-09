@@ -38,5 +38,22 @@ namespace ECMS.Controllers
                 throw new UserFriendlyException(e.Message);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> GetTrackingInfor([FromQuery] PageModelTracking input)
+        {
+            try
+            {
+               var res =  await _trackingAppService.GetAll(input.ClassId, input.SkipSize, input.PageSise);
+               return Ok(res);
+
+            }
+            catch(UserFriendlyException e) {
+               return Ok(e);
+
+                throw new UserFriendlyException(e.Message);
+            }
+        }
+
+
     }
 }
