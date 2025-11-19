@@ -30,4 +30,5 @@ jobs:
       working-directory: 8.4.0/aspnet-core
       run: dotnet restore
     - name: Build
+      working-directory: 8.4.0/aspnet-core
       run: dotnet build --no-restore
