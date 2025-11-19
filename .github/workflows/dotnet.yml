@@ -9,7 +9,10 @@ on:
   pull_request:
     branches: [ "develop" ]
   workflow_dispatch:
-
+    inputs:
+      target_branch:
+        type: string
+        default: develop
 jobs:
   build:
 
