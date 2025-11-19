@@ -24,8 +24,7 @@ jobs:
     - name: check git
       run: git branch
     - name: Restore dependencies
-      run: 
-        cd 8.4.0/aspnet-core
-        dotnet restore
+      working-directory: 8.4.0/aspnet-core
+      run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
