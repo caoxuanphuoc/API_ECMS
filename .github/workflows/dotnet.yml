@@ -32,3 +32,6 @@ jobs:
     - name: Build
       working-directory: 8.4.0/aspnet-core
       run: dotnet build --no-restore
+    - name: Publish .NET Artifact
+      working-directory: 8.4.0/aspnet-core
+      run: dotnet publish
