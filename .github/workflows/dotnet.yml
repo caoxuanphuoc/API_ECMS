@@ -21,9 +21,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: directory folder run code
-      run: cd 8.4.0/aspnet-core
+    - name: check git
+      run: git branch
     - name: Restore dependencies
-      run: dotnet restore
+      run: 
+        cd 8.4.0/aspnet-core
+        dotnet restore
     - name: Build
       run: dotnet build --no-restore
