@@ -34,4 +34,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Publish .NET Artifact
       working-directory: 8.4.0/aspnet-core
-      run: dotnet publish
+      run: dotnet publish -o ecms_build -c Release
+    - name: Upload Deployment Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ecms_build_artifact
+        path: ecms_build
