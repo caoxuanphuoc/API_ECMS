@@ -31,13 +31,12 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: 8.4.0/aspnet-core
-      run: dotnet build --no-restore
+      run: dotnet build ECMS.sln --no-restore
     - name: Publish .NET Artifact
       working-directory: 8.4.0/aspnet-core
       run: dotnet publish src/ECMS.Web.Host/ECMS.Web.Host.csproj -o ecms_build 
     - name: Upload Deployment Artifact
       uses: actions/upload-artifact@v4
       with:
-        working-directory: 8.4.0/aspnet-core
         name: ecms_build_artifact
-        path: ecms_build
+        path: 8.4.0/aspnet-core/ecms_build
