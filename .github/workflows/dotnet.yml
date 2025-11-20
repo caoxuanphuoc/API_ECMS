@@ -40,3 +40,39 @@ jobs:
       with:
         name: ecms_build_artifact
         path: 8.4.0/aspnet-core/ecms_build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build # 👈 Chỉ chạy khi Job 'build' thành công
+
+    steps:
+    - name: Download Build Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: ecms_build_artifact # 👈 Tên Artifact đã upload
+
+    - name: Transfer Artifact to VPS
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: ecms_build_artifact/ # 👈 Thư mục Artifact đã tải về
+        target: /var/www/ecms-app/
+    - name: Deploy Script (Service Management)
+      uses: appleboy/ssh-action@v1.0.1
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          # 1. Tạo thư mục nếu chưa có (An toàn cho lần đầu)
+          mkdir -p /var/www/ecms-app/
+          
+          # 2. Chuyển file: SCP Action đã chuyển file vào /var/www/ecms-app/
+          #    (Không cần lệnh copy file ở đây nữa)
+          
+          # 3. Quản lý dịch vụ (Service Management)
+          #    Lệnh này chỉ chạy nếu dịch vụ đã được cài đặt
+          sudo systemctl stop ECMS.service 
+          sudo systemctl start ECMS.service
+    
