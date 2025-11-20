@@ -59,7 +59,7 @@ jobs:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: ecms_build_artifact/ # 👈 Thư mục Artifact đã tải về
+        source: ./* # 👈 Thư mục Artifact đã tải về
         target: /var/www/ecms-app/
     - name: Deploy Script (Service Management)
       uses: appleboy/ssh-action@v1.0.1
