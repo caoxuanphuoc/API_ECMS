@@ -49,7 +49,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: ecms_build_artifact # 👈 Tên Artifact đã upload
-
+        
+    - name: Debug Check Downloaded Artifact Path
+      run: ls -R
+      
     - name: Transfer Artifact to VPS
       uses: appleboy/scp-action@v0.1.7
       with:
