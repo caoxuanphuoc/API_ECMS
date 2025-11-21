@@ -33,7 +33,7 @@ jobs:
     - name: 📦 Xây dựng và Đẩy Image lên GHCR
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ./Dockerfile
         file: 8.4.0/aspnet-core/Dockerfile
         push: true
         tags: | 
