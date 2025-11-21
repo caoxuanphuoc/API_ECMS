@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
 # Copy csproj của API chính và restore
-COPY ["src/ECMS.Application/ECMS.Application.csproj", "ECMS.Application/"]
+COPY ["src/ECMS.Application/ECMS.Application.csproj", "src/ECMS.Application/"]
 COPY ["src/ECMS.Core/ECMS.Core.csproj", "src/ECMS.Core/"]
 COPY ["src/ECMS.EntityFrameworkCore/ECMS.EntityFrameworkCore.csproj", "src/ECMS.EntityFrameworkCore/"]
 COPY ["src/ECMS.Migrator/ECMS.Migrator.csproj", "src/ECMS.Migrator/"]
