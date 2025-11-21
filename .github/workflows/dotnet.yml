@@ -35,9 +35,9 @@ jobs:
       with:
         context: .
         push: true
-        tags: |
-          ghcr.io/${{ lower(github.repository) }}:latest
-          ghcr.io/${{ lower(github.repository) }}:${{github.sha}} #    
+        tags: | 
+          ghcr.io/ecms:latest
+          ghcr.io/ecms:${{github.sha}} #    
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -49,7 +49,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           # 1. Định nghĩa các biến cần thiết
-          IMAGE_TAG="ghcr.io/${{ lower(github.repository) }}:${{ github.sha }}"
+          IMAGE_TAG="ghcr.io/ecms:${{ github.sha }}"
           CONTAINER_NAME="ecms-app"
           
           # 2. Kéo (Pull) Image mới nhất từ GHCR
