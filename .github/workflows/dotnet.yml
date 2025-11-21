@@ -40,42 +40,51 @@ jobs:
       with:
         name: ecms_build_artifact
         path: 8.4.0/aspnet-core/ecms_build
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build # 👈 Chỉ chạy khi Job 'build' thành công
-
+  build:
     steps:
-    - name: Download Build Artifact
-      uses: actions/download-artifact@v4
+    - name:  Đăng nhập vào GitHub Container Registry
+      uses: docker/login-action@v3
       with:
-        name: ecms_build_artifact # 👈 Tên Artifact đã upload
-        
-    - name: Debug Check Downloaded Artifact Path
-      run: ls -R
-      
-    - name: Transfer Artifact to VPS
-      uses: appleboy/scp-action@v0.1.7
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: 📦 Xây dựng và Đẩy Image lên GHCR
+      uses: docker/build-push-action@v5
       with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: ./* # 👈 Thư mục Artifact đã tải về
-        target: /var/www/ecms-app/
-    - name: Deploy Script (Service Management)
+        context: .
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}:latest
+          ghcr.io/${{ github.repository }}:${{github.sha}} #    
+  deploy:
+    - name: 🚢 Triển khai Docker trên VPS
       uses: appleboy/ssh-action@v1.0.1
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          # 1. Tạo thư mục nếu chưa có (An toàn cho lần đầu)
-          mkdir -p /var/www/ecms-app/
+          # 1. Định nghĩa các biến cần thiết
+          IMAGE_TAG="ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          CONTAINER_NAME="ecms-app"
           
-          # 2. Chuyển file: SCP Action đã chuyển file vào /var/www/ecms-app/
-          #    (Không cần lệnh copy file ở đây nữa)
+          # 2. Kéo (Pull) Image mới nhất từ GHCR
+          echo "Bắt đầu kéo Image: $IMAGE_TAG"
+          sudo docker pull $IMAGE_TAG
           
-          # 3. Quản lý dịch vụ (Service Management)
-          #    Lệnh này chỉ chạy nếu dịch vụ đã được cài đặt
-          sudo systemctl stop ECMS.service 
-          sudo systemctl start ECMS.service
+          # 3. Dọn dẹp Container cũ (Dừng và Xóa)
+          # Lệnh này sẽ dừng và xóa container cũ nếu nó tồn tại
+          echo "Đang dừng và xóa Container cũ..."
+          sudo docker rm -f $CONTAINER_NAME || true 
+          
+          # 4. Chạy Container mới (Mapping Port và chạy nền)
+          # Giả sử ứng dụng .NET chạy nội bộ trên port 8080
+          echo "Đang khởi động Container mới..."
+          sudo docker run -d \
+            --name $CONTAINER_NAME \
+            -p 80:8080 \
+            $IMAGE_TAG
+          
+          # 5. Kiểm tra trạng thái (tùy chọn)
+          sudo docker ps -a
     
