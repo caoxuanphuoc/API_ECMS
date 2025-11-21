@@ -37,7 +37,7 @@ jobs:
         push: true
         tags: | 
           ghcr.io/ecms:latest
-          ghcr.io/ecms:${{github.sha}} #    
+          ghcr.io/ecms:${{github.sha}}    
   deploy:
     runs-on: ubuntu-latest
     steps:
